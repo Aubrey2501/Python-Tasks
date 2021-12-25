@@ -1,7 +1,7 @@
 while True:
     first_year = int(input('\nВведите первый год: '))
     second_year = int(input('Введите второй год: '))
-    if  9999< (first_year or second_year) or (first_year or second_year) < 1000 or first_year > second_year:
+    if 9999 < (first_year or second_year) or (first_year or second_year) < 1000 or first_year > second_year:
         print('Ошибка ввода')
     else:
         break
