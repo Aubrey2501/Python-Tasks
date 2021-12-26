@@ -16,3 +16,5 @@ for year in range(first_year, second_year + 1):
     d = year % 10
     if (a == b == c) or (b == c == d) or (a == c == d):
         print(this_year)
+
+# зачет!
