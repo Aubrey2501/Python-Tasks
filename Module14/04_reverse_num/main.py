@@ -1,4 +1,3 @@
-
 def reverse(str_number):
     str1 = str2 = ''
     flag = False
@@ -25,3 +24,4 @@ print('\nПервое число наоборот:', N_rev)
 print('Второе число наоборот:', K_rev)
 print('Сумма:', N_rev + K_rev)
 
+# зачет!
