@@ -2,13 +2,18 @@ shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300],
         ['педаль', 100], ['седло', 1500], ['рама', 12000],
         ['обод', 2000], ['шатун', 200], ['седло', 2700]]
 
-# TODO здесь писать код
 component = input('Название детали: ')
 count = 0
-summ = 0
-for i in range(len(shop)):
-        if shop[i][0] == component:
-                count += 1
-                summ += shop[i][1]
+summ_price = 0
+# TODO range-len стоит заменить на вхождение, и получать сразу два значения в переменные цикла для сравнений
+#  for detail, price in shop
+#      - в "detail" всегда будет первое значение списка
+#      - в "price" всегда будет второе значение списка
+for detail, price in shop:
+
+    if detail == component:
+        count += 1
+        summ_price += price
+
 print('\nКол-во деталей -', count)
-print('Общая стоимость -', summ)
+print('Общая стоимость -', summ_price)

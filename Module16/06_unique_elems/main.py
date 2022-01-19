@@ -14,7 +14,7 @@ print('Второй список:', list_2)
 list_1.extend(list_2)
 list_new = []
 # TODO Сравнение излишние, достаточно - while list_1
-while list_1 != []:
+while list_1:
     number = list_1[0]
     list_new.append(number)
     count_num = list_1.count(number)
