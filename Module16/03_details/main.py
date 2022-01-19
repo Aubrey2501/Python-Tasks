@@ -5,10 +5,10 @@ shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300],
 # TODO здесь писать код
 component = input('Название детали: ')
 count = 0
-summ = 0
-for i in range(len(shop)):
-        if shop[i][0] == component:
+summ_price = 0
+for detail, price in shop:
+        if detail == component:
                 count += 1
-                summ += shop[i][1]
+                summ_price += price
 print('\nКол-во деталей -', count)
-print('Общая стоимость -', summ)
+print('Общая стоимость -', summ_price)

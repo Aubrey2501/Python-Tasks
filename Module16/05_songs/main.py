@@ -11,9 +11,9 @@ violator_songs = [
 ]
 def is_song_exist(song, violator_songs):
     length = 0
-    for index in range(len(violator_songs)):
-        if violator_songs[index][0] == song:
-            length = violator_songs[index][1]
+    for i_song, i_length in violator_songs:
+        if  i_song == song:
+            length = i_length
             break
     return(length)
 
