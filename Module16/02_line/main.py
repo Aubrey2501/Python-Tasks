@@ -1,5 +1,3 @@
-# TODO здесь писать код
-
 class1 = list(range(160, 176 + 1, 2))
 class2 = list(range(162, 180 + 1, 3))
 print(class1)
@@ -22,3 +20,5 @@ for i_student2 in range(0, len(class2)):
 # class1.sort()
 
 print('Отсортированный список учеников:', class1)
+
+# зачет!

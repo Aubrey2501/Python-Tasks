@@ -1,4 +1,3 @@
-# TODO здесь писать код
 N = int(input('Кол-во друзей: '))
 K = int(input('Кол-во долговых расписок: '))
 friends = []
@@ -20,3 +19,5 @@ for ind in range(K):
 print('\nБаланс друзей: ')
 for i in range(N):
     print(friends[i][0], ':', friends[i][1])
+
+# зачет!

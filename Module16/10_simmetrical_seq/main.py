@@ -1,4 +1,3 @@
-# TODO здесь писать код
 def list_inp(string, begin , end):
     list_i = []
     for i in range(begin, end + 1):
@@ -28,3 +27,5 @@ for i in range(point_left, -1, -1):
     string_n.append(to_append)
 
 print('Сами числа:', string_n)
+
+# зачет!

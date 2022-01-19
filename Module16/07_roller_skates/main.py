@@ -1,4 +1,3 @@
-# TODO здесь писать код
 num_skates = int(input('Кол-во коньков: '))
 skates = []
 for i in range(num_skates):
@@ -22,4 +21,4 @@ for size in sizes:
 
 print('\nНаибольшее кол-во людей, которые могут взять ролики: ', men)
 
-
+# зачет!
