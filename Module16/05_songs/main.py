@@ -10,4 +10,29 @@ violator_songs = [
     ['Clean', 5.83]
 ]
 
-# TODO здесь писать код
+
+def is_song_exist(song, violator_songs):
+    length = 0
+    for i_song, i_length in violator_songs:
+        if i_song == song:
+            length = i_length
+            break
+    return (length)
+
+
+songs_num = int(input('Сколько песен выбрать? '))
+sum_length = 0
+for i in range(songs_num):
+    while True:
+        print('Название', i + 1, end=' ')
+        song = input('песни: ')
+        length = is_song_exist(song, violator_songs)
+        if length != 0:
+            sum_length += length
+            break
+        else:
+            print('Такой песни нет, повторите ввод!')
+
+print('Общее время звучания песен:', round(sum_length, 2))
+
+# зачет!
