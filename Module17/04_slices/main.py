@@ -1,6 +1,5 @@
 alphabet = 'abcdefg'
 
-# TODO здесь писать код
 alphabet = 'abcdefg'
 
 print(alphabet[:])
@@ -13,3 +12,5 @@ print(alphabet[3:4])
 print(alphabet[len(alphabet) - 3:])
 print(alphabet[3:5])
 print(alphabet[4:2:-1])
+
+# зачет!

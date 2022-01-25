@@ -1,5 +1,3 @@
-# TODO здесь писать код
-
 word = input('Введите сообщение: ')
 K = int(input('Введите сдвиг: '))
 
@@ -18,3 +16,5 @@ for symbol in word:
     code_word += code_sym
 
 print('Зашифрованное сообщение:', code_word)
+
+# зачет!

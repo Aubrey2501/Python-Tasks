@@ -1,5 +1,6 @@
-# TODO здесь писать код
 import random
+
+
 def throw(N, trying, row):
     L_i = random.randint(0, N - 1)
     R_i = random.randint(L_i, N - 1)
@@ -10,14 +11,16 @@ def throw(N, trying, row):
     row_hit = ['.' for _ in row_hit]
     row_left.extend(row_hit)
     row_left.extend(row_right)
-    return(row_left)
+    return (row_left)
 
 
-N =random.randint(1, 20)
+N = random.randint(1, 20)
 # print(N)
 row = ['I' for _ in range(N)]
-K= random.randint(1, 10)
+K = random.randint(1, 10)
 for trying in range(K):
     row = throw(N, trying, row)
     # print('Результат:', row)
 print('\nРезультат:', row)
+
+# зачет!
