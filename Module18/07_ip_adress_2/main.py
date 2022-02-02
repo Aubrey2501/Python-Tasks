@@ -1,5 +1,3 @@
-# TODO здесь писать код
-
 def is_error(symbol):
     flag = False
     if not symbol.isdigit():
@@ -8,7 +6,7 @@ def is_error(symbol):
         print(symbol, 'превышает 255')
     else:
         flag = True
-    return(flag)
+    return (flag)
 
 
 correct = False
@@ -26,8 +24,4 @@ while not correct:
 
 print('IP-адрес корректен')
 
-
-
-
-
-
+# зачет!

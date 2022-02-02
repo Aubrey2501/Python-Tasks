@@ -1,5 +1,3 @@
-# TODO здесь писать код
-
 while True:
     password = input('Придумайте пароль: ')
     is_upper = [True if password[i_symbol].isupper() else False for i_symbol in range(len(password))]
@@ -9,3 +7,5 @@ while True:
     else:
         print('Это надёжный пароль!')
         break
+
+# зачет!

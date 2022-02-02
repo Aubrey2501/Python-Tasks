@@ -1,5 +1,3 @@
-# TODO здесь писать код
-
 err_list = list('@№$%^&*()')
 while True:
     file_name = input('\nНазвание файла: ')
@@ -13,5 +11,4 @@ while True:
         print('Файл назван верно.')
         break
 
-
-
+# зачет!
