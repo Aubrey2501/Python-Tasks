@@ -43,6 +43,25 @@ data = {
         }
     ]
 }
+print('Ключи словаря, их значения:')
+print(data.keys(), data.values())
+
+data["ETH"]['total_dif'] = 100
+# print(data["ETH"])
+
+data['tokens'][0]['fst_token_info']['name'] = 'doge'
+# print('\n', data['tokens'][0]['fst_token_info'])
+
+total_out = 0
+for i_token in range(2):
+    total_out += data['tokens'][i_token].pop('total_out')
+data['ETH']['total_out'] = total_out
+# print(data['tokens'])
+# print(data['ETH'])
+
+chng_key = data['tokens'][1]['sec_token_info'].pop('price')
+data['tokens'][1]['sec_token_info']['total_price'] = chng_key
+# print(data['tokens'][1]['sec_token_info'])
 
 
 # TODO здесь писать код
