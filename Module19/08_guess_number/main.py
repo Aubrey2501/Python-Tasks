@@ -1,26 +1,27 @@
-# TODO здесь писать код
+import random
 max_number = int(input('Введите максимальное число: '))
-set_list = {str(i) for i in range(1, max_number + 1)}
+set_list = {i for i in range(1, max_number + 1)}
 
+answer = random.randint(1, max_number)
 question = ''
-exist_set = set()
+
 while True:
     question = input('Нужное число есть среди вот этих чисел?: ')
     if question == 'Помогите!':
         break
     else:
-        set_int = set_list.intersection(set(question.split()))
+        set_int = set(int(number) for number in question.split() if number.isdigit())
         print('Ответ Артема:', end=' ')
-        if set_int == set():
-            print('Нет')
-        else:
+
+        if answer in set_int:
             print('Да')
-            exist_set.update(set_int)
+        else:
+            print('Нет')
+            set_list = set_list.difference(set_int)
 
-print('Артём мог загадать следующие числа:', end=' ')
-for symbol in sorted(set_list.difference(exist_set)):
-    print(symbol, end=' ')
-
+print('\nАртём мог загадать следующие числа:', end=' ')
+for number in sorted(set_list):
+    print(number, end=' ')
 
 
 

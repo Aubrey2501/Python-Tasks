@@ -23,11 +23,13 @@ store = {
         {'quantity': 43, 'price': 97},
     ],
 }
-# TODO здесь писать код
 
 for i_name in goods:
     i_code = goods[i_name]
-    sum_number = sum({store[i_code][item]['quantity'] for item in range(len(store[i_code]))})
-    sum_price = sum({store[i_code][item]['quantity'] * store[i_code][item]['price'] for item in range(len(store[i_code]))})
+
+    sum_number = sum_price = 0
+    for item in store[i_code]:
+        sum_number += item['quantity']
+        sum_price += item['price']
     print(i_name, '-', sum_number, 'шт, стоимость -', sum_price, 'руб.')
 
