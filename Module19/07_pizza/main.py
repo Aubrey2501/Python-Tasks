@@ -1,6 +1,6 @@
-# orders_list = ['Иванов Пепперони 1', 'Петров Де-Люкс 2', 'Иванов Мясная 3', 'Иванов Мексиканская 2', 'Иванов Пепперони 2', 'Петров Интересная 5']
+# orders_list = ['Иванов Пепперони 1',
+# 'Петров Де-Люкс 2', 'Иванов Мясная 3', 'Иванов Мексиканская 2', 'Иванов Пепперони 2', 'Петров Интересная 5']
 
-# TODO здесь писать код
 orders_dict = dict()
 num_orders = int(input('Введите кол-во заказов: '))
 orders_dict = dict()
@@ -29,3 +29,4 @@ for client in sorted(orders_dict.keys()):
     for order in orders_dict[client].keys():
         print('      ', order, ':', orders_dict[client][order])
 
+# зачет!

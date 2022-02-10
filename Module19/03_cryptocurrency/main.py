@@ -63,5 +63,4 @@ chng_key = data['tokens'][1]['sec_token_info'].pop('price')
 data['tokens'][1]['sec_token_info']['total_price'] = chng_key
 # print(data['tokens'][1]['sec_token_info'])
 
-
-# TODO здесь писать код
+# зачет!

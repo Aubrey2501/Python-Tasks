@@ -1,4 +1,3 @@
-# TODO здесь писать код
 string = input('Введите строку: ')
 sym_dict = {symbol: string.count(symbol) for symbol in string}
 
@@ -11,3 +10,4 @@ if odds > 1:            # Если нечётных букв больше чем
 else:
     print('Можно сделать палиндромом')
 
+# зачет!

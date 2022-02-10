@@ -1,4 +1,3 @@
-# TODO здесь писать код
 geography = dict()
 num_counries = int(input('Кол-во стран: '))
 
@@ -30,5 +29,4 @@ for i in range(3):
     if not is_city:
         print('По городу', i_city, 'данных нет')
 
-
-
+# зачет!

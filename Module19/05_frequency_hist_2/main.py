@@ -1,4 +1,3 @@
-# TODO здесь писать код
 def histogramm(string):
     hist = dict()
     for sym in string:
@@ -12,6 +11,7 @@ def histogramm(string):
         print(i_sym, ':', hist[i_sym])
     return hist
 
+
 text = input('Введите текст: ').lower()
 hist = histogramm(text)
 
@@ -22,4 +22,4 @@ for i_key in range(min(hist.values()), max(hist.values()) + 1):
     hist_inv[i_key] = [i_sym for i_sym in hist.keys() if hist[i_sym] == i_key]
     print(i_key, ':', hist_inv[i_key])
 
-
+# зачет!

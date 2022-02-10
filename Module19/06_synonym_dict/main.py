@@ -1,4 +1,3 @@
-# TODO здесь писать код
 syn_dict = dict()
 num_pars = int(input('Введите количество пар слов: '))
 for i in range(num_pars):
@@ -19,3 +18,5 @@ while True:
     else:
         print('Синоним:', found_w)
         break
+
+# зачет!
