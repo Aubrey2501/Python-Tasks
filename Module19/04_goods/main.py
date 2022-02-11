@@ -24,4 +24,13 @@ store = {
     ],
 }
 
-# TODO здесь писать код
+for i_name in goods:
+    i_code = goods[i_name]
+
+    sum_number = sum_price = 0
+    for item in store[i_code]:
+        sum_number += item['quantity']
+        sum_price += item['price']
+    print(i_name, '-', sum_number, 'шт, стоимость -', sum_price, 'руб.')
+
+# зачет!
