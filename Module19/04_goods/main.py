@@ -33,3 +33,4 @@ for i_name in goods:
         sum_price += item['price']
     print(i_name, '-', sum_number, 'шт, стоимость -', sum_price, 'руб.')
 
+# зачет!

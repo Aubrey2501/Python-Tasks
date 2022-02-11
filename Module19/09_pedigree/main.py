@@ -5,6 +5,11 @@ Romanov_list = ['Alexei Peter_I', 'Anna Peter_I', 'Elizabeth Peter_I', 'Peter_II
 Romanov = dict()
 for _, pair in enumerate(Romanov_list):
     child, father = pair.split()
+    # TODO Второй словарь и цикл ниже не понадобятся вовсе
+    #   if father not in словарь
+    #      - добавляем ключ словарь[father] = 0
+    #   if child not in словарь
+    #      - добавляем ключ и увеличиваем значение обращаясь к родителю  словарь[child] = словарь[father] + 1
     if not (isinstance(child, str) and isinstance(father, str)):
         print('Ошибка ввода!')
         break
@@ -27,4 +32,4 @@ print('Уровень членов семьи в генеалогическом 
 for member in sorted(generation):
     print(member, ':', generation[member])
 
-
+# зачет!
