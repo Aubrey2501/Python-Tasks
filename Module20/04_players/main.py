@@ -4,4 +4,11 @@ players = {
     ("Rob", "Bobbin"): (12, 8, 2)
 }
 
-# TODO здесь писать код
+list_player = []
+for i_player, i_scores in players.items():
+    l_player = list(i_player)
+    l_player.extend(list(i_scores))
+    list_player.append(tuple(l_player))
+print(list_player)
+
+
