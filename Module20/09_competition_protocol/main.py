@@ -18,14 +18,14 @@ for i in range(results_num):
 
 dict_res = dict()
 for i_nickname in results:
-   max_score = min_try = 0
-   for i_score, i_try in results[i_nickname]:
+    max_score = min_try = 0
+    for i_score, i_try in results[i_nickname]:
         if i_score > max_score:
             max_score = i_score
             min_try = i_try
         elif i_score == max_score and i_try < min_try:
             min_try = i_try
-   dict_res[i_nickname] = (max_score, results_num - min_try)
+    dict_res[i_nickname] = (max_score, results_num - min_try)
 
 sorted_tuple = sorted(dict_res.items(), key=lambda x: x[1], reverse=True)
 dict_res = dict(sorted_tuple)
@@ -35,6 +35,4 @@ for i, i_nickname in fin_list:
     if i < 3:
         print(i + 1, 'место:', i_nickname, dict_res[i_nickname][0])
 
-
-
-
+# зачет!

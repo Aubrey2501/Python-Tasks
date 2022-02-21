@@ -4,8 +4,10 @@ data = [
     ('a', 'b', 'c', 'd'),
     {'bcad': 1, 4: 2, 5: 'abc', 6: 4, 7: 'a'}]
 
+
 def crypto(data):
     return scrypt(data)
+
 
 def scrypt(x_data):
     if not isinstance(x_data, dict):
@@ -13,6 +15,7 @@ def scrypt(x_data):
     else:
         list_ind = [{value: x_data[value]} for index, value in enumerate(x_data) if is_prime(index)]
     return list_ind
+
 
 def is_prime(num):
     if num in (0, 1):
@@ -26,3 +29,5 @@ def is_prime(num):
 
 for i_data in data:
     print(crypto(i_data))
+
+# зачет!

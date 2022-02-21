@@ -20,3 +20,5 @@ for i_person, i_age in family.items():
 
 if not found:
     print('Не найдено!')
+
+# зачет!

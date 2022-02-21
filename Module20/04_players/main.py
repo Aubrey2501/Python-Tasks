@@ -6,9 +6,10 @@ players = {
 
 list_player = []
 for i_player, i_scores in players.items():
+    # TODO К спискам преобразывать ненужно потому что можно складывать - append(i_player + i_scores)
     l_player = list(i_player)
     l_player.extend(list(i_scores))
     list_player.append(tuple(l_player))
 print(list_player)
 
-
+# зачет!

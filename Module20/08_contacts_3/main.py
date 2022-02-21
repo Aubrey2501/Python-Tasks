@@ -1,5 +1,6 @@
 phonebook = dict()
 
+
 def ins_phone(phonebook):
     while True:
         print('\nДобавление контакта в телефонную книгу')
@@ -39,11 +40,12 @@ def find_phone(phonebook):
     surname = input('Фамилия: ').lower()
     found = False
     for (i_name, i_surname) in phonebook:
-        if i_surname.lower()  == surname:
+        if i_surname.lower() == surname:
             print(i_name, i_surname, phonebook[(i_name, i_surname)])
             found = True
     if not found:
         print('Не найдено')
+
 
 while True:
     print('\nВведите номер действия:')
@@ -63,7 +65,4 @@ while True:
         print('\nОшибка ввода! Повторите')
         continue
 
-
-
-
-
+# зачет!
