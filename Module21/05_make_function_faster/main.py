@@ -1,9 +1,19 @@
-def calculating_math_func(data):
+def calculating_math_func(data, data_dct):
     result = 1
     for index in range(1, data + 1):
         result *= index
     result /= data ** 3
     result = result ** 10
-    return result
+    data_dct[data] = result
+    # return result
 
-# TODO оптимизировать функцию
+
+
+data_dct = dict()
+while True:
+    data = int(input('Введите входные данные: '))
+    if data not in data_dct:
+        calculating_math_func(data, data_dct)
+
+    print('Результат:', data_dct[data])
+
