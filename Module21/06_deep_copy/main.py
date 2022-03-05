@@ -11,6 +11,7 @@ site = {
     }
 }
 
+
 def find_key(struct, key, product):
     for sub_key, sub_struct in struct.items():
         if key in sub_struct:
@@ -50,4 +51,4 @@ while True:
 
     key = product
 
-
+# зачет!

@@ -8,7 +8,6 @@ def calculating_math_func(data, data_dct):
     # return result
 
 
-
 data_dct = dict()
 while True:
     data = int(input('Введите входные данные: '))
@@ -17,3 +16,4 @@ while True:
 
     print('Результат:', data_dct[data])
 
+# зачет!

@@ -9,3 +9,5 @@ def print_num(num):
 
 num = int(input('Введите num: '))
 print_num(num)
+
+# зачет!

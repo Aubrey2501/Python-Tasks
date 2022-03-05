@@ -9,9 +9,10 @@ def my_sum(*args, **kwargs):
     return i_sum
 
 
-
 print('sum([[1, 2, [3]], [1], 3])')
-print('Ответ:', my_sum([[1, 2, [3]], [1], 3], sum_n=0)) # 10
+print('Ответ:', my_sum([[1, 2, [3]], [1], 3], sum_n=0))  # 10
 
 print('sum(1, 2, 3, 4, 5)')
-print('Ответ:', my_sum(1, 2, 3, 4, 5, sum_n=0)) # 15
+print('Ответ:', my_sum(1, 2, 3, 4, 5, sum_n=0))  # 15
+
+# зачет!
