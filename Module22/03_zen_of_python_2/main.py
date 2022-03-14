@@ -11,6 +11,7 @@ def count_sym(word_lst):
 
 zen_file = open(os.path.join('..', '02_zen_of_python', 'zen.txt'), 'r')
 zen_lst = zen_file.read().split('\n')
+zen_file.close()
 num_strings = len(zen_lst)
 num_words = 0
 sym_dict = dict()
