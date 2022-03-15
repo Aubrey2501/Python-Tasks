@@ -10,7 +10,7 @@ while True:
     print('\nКуда хотите сохранить документ? Введите последовательность папок (через пробел):')
     path_lst = input().split(' ')
     # path_lst = 'C: Users Евгений PycharmProjects Python_Basic Module22 05_save'.split()
-    path =''
+    path = ''
     for i_elem in path_lst:
         path += (i_elem + '/')
     if os.path.exists(path):
