@@ -1,5 +1,6 @@
 import os
 
+
 def directory_content(cur_path, num_dir, num_files, sum_size):
     for i_elem in os.listdir(cur_path):
         path = os.path.join(cur_path, i_elem)
@@ -12,7 +13,8 @@ def directory_content(cur_path, num_dir, num_files, sum_size):
         elif os.path.isfile(path):
             num_files += 1
             sum_size += os.path.getsize(path)
-    return(num_dir, num_files, sum_size)
+    return (num_dir, num_files, sum_size)
+
 
 while True:
     # cur_path = input('\nПожалуйста, введите путь до директории:')
@@ -26,3 +28,5 @@ while True:
 print('Размер каталога (в Кб):', data[2])
 print('Количество подкаталогов:', data[0])
 print('Количество файлов', data[1])
+
+# зачет!

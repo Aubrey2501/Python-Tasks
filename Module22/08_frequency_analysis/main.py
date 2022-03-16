@@ -28,3 +28,5 @@ for i_elem in sorted_lst:
     i_string = ' '.join(i_elem)
     out_file.write(i_string +'\n')
 out_file.close()
+
+# зачет!

@@ -5,3 +5,5 @@ outp_file = open('answer.txt', 'w')
 outp_file.write(str(sum_num))
 input_file.close()
 outp_file.close()
+
+# зачет!

@@ -26,3 +26,4 @@ for i, i_value in sorted(file_dct.items(), reverse=True):
     out_file.write(i_value + '\n')
 out_file.close()
 
+# зачет!

@@ -1,5 +1,6 @@
 import os
 
+
 def count_sym(word_lst):
     for symbol in word_lst:
         if symbol.isalpha():
@@ -8,6 +9,7 @@ def count_sym(word_lst):
                 sym_dict[symbol] = 1
             else:
                 sym_dict[symbol] += 1
+
 
 zen_file = open(os.path.join('..', '02_zen_of_python', 'zen.txt'), 'r')
 zen_lst = zen_file.read().split('\n')
@@ -32,3 +34,5 @@ print('Количество букв в файле:', num_sym)
 print('Количество слов в файле:', num_words)
 print('Количество строк в файле:', num_strings)
 print('Наиболее редкая буква:', min_sym)
+
+# зачет!

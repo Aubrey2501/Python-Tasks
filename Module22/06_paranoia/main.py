@@ -33,3 +33,5 @@ for i_string in file_lst:
     code_string = ceasar_code(i_string, shift)
     out_file.write(code_string + '\n')
 out_file.close()
+
+# зачет!

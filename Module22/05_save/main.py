@@ -1,9 +1,11 @@
 import os
 
+
 def write_file(path, text):
     out_file = open(path, 'w')
     out_file.write(text)
     out_file.close()
+
 
 text = input('Введите строку: ')
 while True:
@@ -32,3 +34,5 @@ while True:
         print('Файл успешно сохранён!')
         write_file(file_path, text)
         break
+
+# зачет!

@@ -20,3 +20,5 @@ for i_sym in book_lst_txt:
 sort_dict = sorted(sym_dict.items(), key=lambda x: x[1], reverse=True)
 for i, i_elem in sort_dict:
     print(i, ':', i_elem)
+
+# зачет!
