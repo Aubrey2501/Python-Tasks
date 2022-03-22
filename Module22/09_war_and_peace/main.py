@@ -1,3 +1,4 @@
+# encoding: utf-8
 import zipfile
 archive = 'voyna-i-mir.zip'
 with zipfile.ZipFile(archive, 'r') as zip_file:
@@ -21,4 +22,4 @@ sort_dict = sorted(sym_dict.items(), key=lambda x: x[1], reverse=True)
 for i, i_elem in sort_dict:
     print(i, ':', i_elem)
 
-# зачет!
+# Р·Р°С‡РµС‚!
