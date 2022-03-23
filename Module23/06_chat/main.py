@@ -6,10 +6,12 @@ def view_chat(file):
     except FileNotFoundError:
         print('История чата пуста \n')
 
+
 def add_comment(file, nick):
     chat_file = open(file, 'a', encoding='utf-8')
     comment = input('Введите сообщение: ')
     chat_file.write('{name}: {massage}\n'.format(name=nick, massage=comment))
+
 
 nickname = input('Введите свой никнейм: ')
 filename = 'chat.txt'
@@ -24,3 +26,4 @@ while True:
     else:
         print('Ошибка команды! Повторите ввод')
 
+# зачет!
