@@ -8,6 +8,12 @@ try:
         if i_line.endswith('\n'):
             line_len -= 1
         if line_len < 3:
+            # TODO "BaseException" довольно обширное исключение, стоит использовать одно из "Exception"
+            #  Например - ValueError
+            #  Статья описывающая иерархию исключений
+            #   https://tatyderb.gitbooks.io/python-express-course/content/chapter_exception/3_tree.html
+            #  BaseException никогда не используют - это про родитель самый главный наследник из древа
+
             raise BaseException
         else:
             total_sym += line_len
@@ -19,6 +25,3 @@ except BaseException:
     print('Длина строки {string} меньше 3-х'.format(string=line_count))
 finally:
     print('Общая длина строк:', total_sym, 'символов')
-
-
-

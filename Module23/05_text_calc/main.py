@@ -1,11 +1,14 @@
 def ariphm_oper(string):
+    # TODO Все проверки невалидных данных делайте здесь, и кидайте исключение в основной цикл.
+    #  Запись в файл перенесите в основной цикл
     result = eval(string)
     out_file = open('result.txt', 'a')
     print(result)
     out_file.write(str(result) + '\n')
 
 
-arithm_oper =['+', '-', '*', '/', '//', '%']
+arithm_oper = ['+', '-', '*', '/', '//', '%']
+# TODO Открывайте файлы через контекстный менеджер
 inp_file = open('calc.txt', 'r')
 out_file = open('result.txt', 'w')
 for i_line in inp_file:
@@ -34,6 +37,4 @@ for i_line in inp_file:
         else:
             continue
 
-
 out_file.close()
-

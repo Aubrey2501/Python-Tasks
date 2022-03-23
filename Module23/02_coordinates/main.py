@@ -1,19 +1,30 @@
 import random
 
+# TODO В функциях сразу проверяйте когда будет деление на ноль, и кидайте исключение вместе с сообщением.
+#  raise ZeroDivisionError('Ошибка в функции №1')
 def f(x, y):
     x += random.randint(0, 10)
     y += random.randint(0, 5)
     return (x / y)
+
 
 def f2(x, y):
     x -= random.randint(0, 10)
     y -= random.randint(0, 5)
     return (y / x, err)
 
+
+# TODO Открывайте сразу все файлы в одном контекстном менеджере
+#  with open(....),
+#        open(....)
 try:
     err = ''
     file = open('coordinates.txt', 'r')
     for line in file:
+        # TODO Добавьте обработчик и ловите конкретные исключения.
+        #  В "try" сразу делаем все действия
+        #  В "except" ловим исключение с присвоением переменной - except ZeroDivisionError as error
+        #  Тогда строку с сообщением можно будет взять из переменной "error"
         nums_list = line.split()
         err = 'с первой фукцией'
         res1 = f(int(nums_list[0]), int(nums_list[1]))
