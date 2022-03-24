@@ -1,28 +1,33 @@
-with open('registrations.txt', 'r', encoding='utf-8') as file:
-    out_file = open('registrations_good.log', 'w')
-    err_file = open('registrations_bad.log ', 'w')
+def test_line(line):
+    line = line.replace('\n', '')
+    str_lst = line.split(' ')
+    if len(str_lst) != 3:
+        raise ChildProcessError('- в строке НЕ присутствуют все три поля')
+    if not str_lst[0].isalpha():
+        raise ChildProcessError('- поле имени содержит НЕ только буквы')
+    elif '@' not in str_lst[1] or '.' not in str_lst[1]:
+        raise ChildProcessError('- поле е-mail НЕ содержит `@` и `.`(точку)')
+    elif not str_lst[2].isdigit() or not (10 < int(str_lst[2]) < 99):
+        raise ChildProcessError('- поле ВОЗРАСТ не является числом от 10 до 99')
+    else:
+        return '{name:<15}{mail:<30}{age}\n'.format(name=str_lst[0], mail=str_lst[1], age=str_lst[2])
+
+
+with open('registrations.txt', 'r', encoding='utf-8') as file, \
+    open('registrations_good.log', 'w') as out_file, \
+    open('registrations_bad.log ', 'w') as err_file:
 
     for i_line in file:
         try:
-            str_lst = i_line.split(' ')
-            if len(str_lst) != 3:
-                raise IndexError
-            if not str_lst[0].isalpha():
-                raise NameError
-            if '@' not in str_lst[1] or '.' not in str_lst[1]:
-                raise SyntaxError
-            if not (10 < int(str_lst[2]) < 99):
-                raise ValueError
-            out_file.write(i_line)
+            # line = i_line.replace('\n', '')
+            out_string = test_line(i_line)
+            out_file.write(out_string)
 
-        except IndexError:
-            err_file.write(i_line.replace('\n', '') + '   - НЕ присутствуют все три поля\n')
-        except NameError:
-            err_file.write(i_line.replace('\n', '') + '   - поле имени содержит НЕ только буквы\n')
-        except SyntaxError:
-            err_file.write(i_line.replace('\n', '') + '   - поле емейл НЕ содержит @ и .(точку)\n')
-        except ValueError:
-            err_file.write(i_line.replace('\n', '') + '   - поле возраст НЕ является числом от 10 до 99\n')
+        except ChildProcessError as error:
+            i_line = i_line.replace('\n', '')
+            err_file.write(f'{i_line:<40}{error}\n')
+
+
 # TODO Логику нужно переработать.
 #  1 - сделайте функцию, которая обрабатывает строку
 #  Функция проверяет строку.
