@@ -19,3 +19,5 @@ except ValueError:
     print('Длина строки {string} меньше 3-х'.format(string=line_count))
 finally:
     print('Общая длина строк:', total_sym, 'символов')
+
+# зачет!

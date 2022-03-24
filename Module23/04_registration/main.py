@@ -14,9 +14,8 @@ def test_line(line):
 
 
 with open('registrations.txt', 'r', encoding='utf-8') as file, \
-    open('registrations_good.log', 'w') as out_file, \
-    open('registrations_bad.log ', 'w') as err_file:
-
+        open('registrations_good.log', 'w') as out_file, \
+        open('registrations_bad.log ', 'w') as err_file:
     for i_line in file:
         try:
             # line = i_line.replace('\n', '')
@@ -26,7 +25,6 @@ with open('registrations.txt', 'r', encoding='utf-8') as file, \
         except ChildProcessError as error:
             i_line = i_line.replace('\n', '')
             err_file.write(f'{i_line:<40}{error}\n')
-
 
 # TODO Логику нужно переработать.
 #  1 - сделайте функцию, которая обрабатывает строку
@@ -46,3 +44,5 @@ with open('registrations.txt', 'r', encoding='utf-8') as file, \
 #  print(f'|{"текст":^30}|') #  По центру
 #  print(f'|{"текст":*^30}|') #  По центру с заполнением оставшихся символов звездочками "*"
 #  Число после знаков "<,>,^" означение количество зарезервированного место под строку.
+
+# зачет!

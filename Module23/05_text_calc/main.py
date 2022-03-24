@@ -11,6 +11,7 @@ def ar_oper(string):
         result = eval(string)
         return f'{res_lst[0]} {res_lst[1]} {res_lst[2]} = {result}'
 
+
 arithm_oper = ['+', '-', '*', '/', '//', '%']
 # TODO Открывайте файлы через контекстный менеджер
 with open('calc.txt', 'r') as inp_file, open('result.txt', 'w') as out_file:
@@ -30,3 +31,5 @@ with open('calc.txt', 'r') as inp_file, open('result.txt', 'w') as out_file:
 
 inp_file.close()
 out_file.close()
+
+# зачет!

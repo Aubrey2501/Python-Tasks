@@ -1,11 +1,13 @@
 import random
 
+
 def file_errors(file):
     with open(file, 'r') as errors_file:
         error_lst = []
         for line in errors_file:
             error_lst.append(line.split(' ')[0])
         return error_lst
+
 
 try:
     with open('result.txt', 'w') as out_file:
@@ -31,3 +33,5 @@ else:
     print('Вы успешно выполнили условие для выхода из порочного цикла!')
 finally:
     out_file.close()
+
+# зачет!
