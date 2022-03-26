@@ -12,22 +12,31 @@ class Varrior:
     def defend(self):
         self.hp -= 20
         print('Защищается воин {}! Здоровье - 20! Осталось здоровья: {}'.format(self.index, self.hp))
+
+    def is_alive(self):
         if self.hp <= 0:
             self.alive = False
+            print('Воин {} пал в бою! Бой окончен'.format(self.index))
+            return False
+        return True
 
+    def var_info(self):
+        print('Воин номер {}: здоровье- {}'.format(self.index, self.hp))
 
-
-def var_info(varriors):
-    for i_var in varriors:
-        print('Воин номер {}: здоровье- {}'.format(i_var.index, i_var.hp))
 
 varriors = [Varrior(index) for index in range(1, 3)]
-var_info(varriors)
 count = 0
 while True:
     count += 1
     print()
+    for i_varrior in varriors:
+        i_varrior.var_info()
     print('Ход номер', count, end=':\n')
     dice = random.randint(0, 1)
-    varriors = [varriors[i].attack() if i == dice else varriors[i].defend() for i in range(2)]
-    if  all(varriors.alive == 'True'):
+    varriors = [i_varrior(i).attack() if i == dice else i_varrior(i).defend() for i_varrior in varriors]
+    # for i_varrior in varriors:
+    #     print(i_varrior.is_alive())
+
+    # if not all([i_varrior.is_alive() for i_varrior in varriors]):
+    #     break
+
