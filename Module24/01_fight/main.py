@@ -8,10 +8,12 @@ class Varrior:
 
     def attack(self):
         print('Атакует воин {}! Здоровье - {}'.format(self.index, self.hp))
+        return self
 
     def defend(self):
         self.hp -= 20
         print('Защищается воин {}! Здоровье - 20! Осталось здоровья: {}'.format(self.index, self.hp))
+        return self
 
     def is_alive(self):
         if self.hp <= 0:
@@ -31,12 +33,10 @@ while True:
     print()
     for i_varrior in varriors:
         i_varrior.var_info()
-    print('Ход номер', count, end=':\n')
-    dice = random.randint(0, 1)
-    varriors = [i_varrior(i).attack() if i == dice else i_varrior(i).defend() for i_varrior in varriors]
-    # for i_varrior in varriors:
-    #     print(i_varrior.is_alive())
+    print('\nХод номер', count, end=':\n')
+    dice = random.randint(1, 2)
+    varriors = [i_varrior.attack() if i_varrior.index == dice else i_varrior.defend() for i_varrior in varriors]
 
-    # if not all([i_varrior.is_alive() for i_varrior in varriors]):
-    #     break
+    if not all([i_varrior.is_alive() for i_varrior in varriors]):
+        break
 
