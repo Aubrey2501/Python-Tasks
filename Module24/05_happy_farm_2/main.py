@@ -25,7 +25,7 @@ class PotatoGarden:
         self.potatoes = [Potato(index) for index in range(1, count + 1)]
 
     def grow_all(self):
-        print('Картошка прорастает!')
+        print('Картошка прорастает')
         for i_potato in self.potatoes:
             i_potato.grow()
 
@@ -33,26 +33,39 @@ class PotatoGarden:
         for i_potato in self.potatoes:
             if not i_potato.is_ripe():
                 print('Картошка еще не созрела!\n')
-                break
+                return False
             else:
                 print('Вся картошка созрела! Можно собирать\n')
-                break
+                return True
+
+    def harvesting(self):
+        print('Садовник собирает урожай')
+        for i_potato in self.potatoes:
+            i_potato.state = 0
+            i_potato.print_state()
+        self.are_all_ripe()
 
 class Gardener:
 
-    def __init__(self, count):
-        self.gardens = [PotatoGarden(index) for index in range(count)]
+    def __init__(self, garden):
+        self.garden = garden
 
     def take_care(self):
-        for i_garden in self.gardens:
-            print('Садовник ухаживает за грядкой {}'.format(self.gardens.index(i_garden) + 1))
-            i_garden.grow_all()
+        print('Садовник ухаживает за грядкой')
+        self.garden.grow_all()
+        if self.garden.are_all_ripe():
+            self.garden.harvesting()
+
+
+
+
+
+
 
 
 my_garden = PotatoGarden(5)
 my_garden.are_all_ripe()
-my_gardener = Gardener(1)
+my_gardener = Gardener(my_garden)
 for _ in range(3):
-    # my_garden.grow_all()
     my_gardener.take_care()
 
