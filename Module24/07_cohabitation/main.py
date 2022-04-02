@@ -1,4 +1,5 @@
 import random
+
 class Human:
     satiety = 50
     def __init__(self, name):
