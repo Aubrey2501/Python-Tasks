@@ -68,12 +68,13 @@ alive = True
 for i_name in test_subj:
     person = Human(i_name)
     for day in range(366):
-        # person.satiety -= 1
+
         alive = person.human_info(day)
         if alive:
             dice = random.randint(1, 6)
             print('Бросаем кубик! На кубике выпало: ', dice)
             person.action(dice)
+            # person.satiety -= 1
         else:
             print('Увы, клиент помер с голоду :(')
             break
