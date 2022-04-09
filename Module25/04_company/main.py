@@ -14,7 +14,7 @@ class Employee(Person):
         self.salary = 0
         self.position = ''
 
-    def get_employee(self):
+    def __str__(self):
         return 'Name: {}\nSurname: {}\nAge: {}\nPosition: {}\nSalary: {}\n'.format(
             self.name, self.surname, self.age, self.position, self.salary)
 
@@ -49,6 +49,7 @@ class Worker(Employee):
         self.hours_worked = hours
         self.salary = 100 * self.hours_worked
 
+
 def init_employees (category, names):
     employers_lst = []
     for i_person in names:
@@ -80,12 +81,12 @@ for category in range(3):
         workers = category_lst
 
 for manager in managers:
-    print(manager.get_employee())
+    print(manager)
 for agent in agents:
     agent.set_salary(sales=random.randint(50000, 100000))
-    print(agent.get_employee())
+    print(agent)
 for worker in workers:
     worker.set_salary(hours=random.randint(100, 120))
-    print(worker.get_employee())
+    print(worker)
 
 
