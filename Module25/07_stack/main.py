@@ -2,15 +2,17 @@ class Steck:
     def __init__(self):
         self.stack = dict()
 
-    def add(self, key, value):
+    def add_item(self, key, value):
         self.stack[key] = value
 
-    def remove(self, other):
-        element = self.stack.pop()
-        return element
+    def remove_item(self):
+        try:
+            return self.stack.popitem()
+        except KeyError:
+            return 'end of dict'
 
-    def __str__(self):
-        return self.stack
+    # def take_stack(self):
+    #     return self.stack
 
 class TaskManager:
     def __init__(self, task: str, priority: int):
@@ -19,7 +21,17 @@ class TaskManager:
         self.priority = priority
 
     def new_task(self, task, priority):
-        self.steck[task] = priority
+        self.steck.add_item(task, priority)
+
+    def sort_steck(self):
+
+
+    def __str__(self):
+        return self.sort_steck()
+
+
+
+
 
 
 
