@@ -24,15 +24,19 @@ class TaskManager:
         self.steck.add_item(task, priority)
 
     def sort_steck(self):
-
+        sorted_tuple = sorted(self.steck.items(), key=lambda x: x[1])
+        sorted_steck = dict(sorted_tuple)
+        return sorted_steck
 
     def __str__(self):
         return self.sort_steck()
 
 
-
-
-
-
-
 my_steck = Steck()
+manager = TaskManager()
+manager.new_task("сделать уборку", 4)
+manager.new_task("помыть посуду", 4)
+manager.new_task("отдохнуть", 1)
+manager.new_task("поесть", 2)
+manager.new_task("сдать дз", 2)
+print(manager)
