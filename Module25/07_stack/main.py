@@ -10,11 +10,8 @@ class Steck:
     def remove_item(self):
         return self.stack.popitem()
 
-    # def take_stack(self):
-    #     return self.stack
 
 class TaskManager:
-
     def __init__(self):
         self.steck = my_steck
         self.dct = dict()
@@ -38,10 +35,9 @@ class TaskManager:
 
     def set_result(self):
         self.sort_steck()
-        result = 'Результат:'
+        result = 'Результат:\n'
         for i_task, i_priority in self.dct.items():
-            result = result.join((str(i_priority), i_task))
-            print(result)
+            result += ' '.join((str(i_priority), i_task, '\n'))
         return result
 
     def __str__(self):
