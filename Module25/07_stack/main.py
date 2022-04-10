@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Steck:
     def __init__(self):
         self.stack = dict()
@@ -6,37 +8,52 @@ class Steck:
         self.stack[key] = value
 
     def remove_item(self):
-        try:
-            return self.stack.popitem()
-        except KeyError:
-            return 'end of dict'
+        return self.stack.popitem()
 
     # def take_stack(self):
     #     return self.stack
 
 class TaskManager:
-    def __init__(self, task: str, priority: int):
+
+    def __init__(self):
         self.steck = my_steck
-        self.task = task
-        self.priority = priority
+        self.dct = dict()
 
     def new_task(self, task, priority):
         self.steck.add_item(task, priority)
 
+    def get_dct(self):
+        while True:
+            try:
+                i_tuple = self.steck.remove_item()
+                self.dct[i_tuple[0]] = i_tuple[1]
+            except KeyError:
+                break
+
     def sort_steck(self):
-        sorted_tuple = sorted(self.steck.items(), key=lambda x: x[1])
-        sorted_steck = dict(sorted_tuple)
-        return sorted_steck
+        self.get_dct()
+        sorted_tuple = sorted(self.dct.items(), key=lambda x: x[1])
+        self.dct.clear()
+        self.dct = dict(sorted_tuple)
+
+    def set_result(self):
+        self.sort_steck()
+        result = 'Р РµР·СѓР»СЊС‚Р°С‚:'
+        for i_task, i_priority in self.dct.items():
+            result = result.join((str(i_priority), i_task))
+            print(result)
+        return result
 
     def __str__(self):
-        return self.sort_steck()
+        print_str = self.set_result()
+        return print_str
 
 
 my_steck = Steck()
 manager = TaskManager()
-manager.new_task("сделать уборку", 4)
-manager.new_task("помыть посуду", 4)
-manager.new_task("отдохнуть", 1)
-manager.new_task("поесть", 2)
-manager.new_task("сдать дз", 2)
+manager.new_task("СЃРґРµР»Р°С‚СЊ СѓР±РѕСЂРєСѓ", 4)
+manager.new_task("РїРѕРјС‹С‚СЊ РїРѕСЃСѓРґСѓ", 4)
+manager.new_task("РѕС‚РґРѕС…РЅСѓС‚СЊ", 1)
+manager.new_task("РїРѕРµСЃС‚СЊ", 2)
+manager.new_task("СЃРґР°С‚СЊ РґР·", 2)
 print(manager)
