@@ -2,6 +2,14 @@ import random
 
 
 class Karma:
+    """
+    Базовый класс Карма
+    Attributes:
+        count (int): счетчик дней
+        exceptions (list): список исключений
+        karma (int): счетчик накопленных очков кармы
+        day_karma (int): количество очков кармы за текущий день
+    """
     __exceptions = ['KillError', 'DrunkError', 'CarCrashError', 'GluttonyError', 'DepressionError']
     __count = 0
 
@@ -10,6 +18,15 @@ class Karma:
         self.__day_karma = 0
 
     def set_carma(self, rand_karma):
+        """
+        Сетер для определения очков дневной кармы и подсчета суммарной кармы за период
+        :param rand_karma (int): случайное значение очков дневной кармы от 1 до 7
+        Attributes:
+            count (int): счетчик дней
+            exceptions (list): список исключений
+            day_karma (int or exception): количество очков кармы за текущий день или исключение
+            karma (int): счетчик накопленных очков кармы
+        """
         self.__count += 1
         self.__day_karma = random.choices((rand_karma, random.choice(self.__exceptions)), weights=[10, 1])[0]
         if self.__day_karma not in self.__exceptions:
@@ -18,13 +35,27 @@ class Karma:
             raise Exception(self.__day_karma)
 
     def get_karma(self):
+        """
+        Геттер для получения суммы накопленной кармы за период
+        :return: karma -  сумма накопленной кармы за период
+        :rtype: int
+        """
         return self.__karma
 
     def get_count(self):
+        """
+        Геттер для получения значения счетчика дней
+        :return: count
+        :rtype: int
+        """
         return self.__count
 
-
 def one_day(karma):
+    """
+    Процедура инициализации расчета дневной кармы
+    :param karma (type): элемент класса Карма
+    :param: rand_karma (int): случайное значение очков кармы за день от 1 до 7
+    """
     rand_karma = random.randint(1, 7)
     karma.set_carma(rand_karma)
 

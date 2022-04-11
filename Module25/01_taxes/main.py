@@ -21,7 +21,7 @@ class Property():
         Геттер для получения суммы налога
         :param __worth: стоимость имущества
         :param __coeff: ставка налогообложения
-        :return: __tax
+        :return: __tax - сумма налога
         :rtype: int
         """
         self.tax = self.__worth * self.coeff
