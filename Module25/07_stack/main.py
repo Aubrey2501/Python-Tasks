@@ -11,7 +11,6 @@ class Stack:
         return self.stack.pop()
 
 
-
 class TaskManager:
     def __init__(self):
         self.stack = my_stack

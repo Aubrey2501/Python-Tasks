@@ -1,4 +1,14 @@
 class Property():
+    """
+    Базовый класс, описывающий имущество
+    Attributes:
+        coeff: ставка налогообложения для разных классов имущества
+        tax: сумма налога на имущество
+
+    Args:
+        object (str): передается название имущества
+        worth (int): передается стоимость имущества
+    """
     __coeff = 0
     __tax = 0
 
@@ -6,15 +16,38 @@ class Property():
         self.__object = object
         self.__worth = worth
 
+    def set_tax(self):
+        """
+        Сеттер для расчета суммы налога
+        :param __worth: стоимость имущества1
+        :param __coeff: ставка налогообложения
+        """
+        self.__tax = self.__worth * self.__coeff
+
     def get_tax(self):
-        self.tax = self.__worth * self.coeff
-        return self.tax
+        """
+        Геттер для получения суммы налога
+        :return: __tax
+        :rtype: int
+        """
+        self.set_tax()
+        return self.__tax
 
     def __str__(self):
-        return 'Property object: {}\nWorth: {:>19,}\nTax rate: {:>13.1%}\nTax: {:>19,}\n'.format(self.__object, self.__worth, self.coeff, self.tax)
+        return 'Property object: {}\nWorth: {:>19,}\nTax rate: {:>13.1%}\nTax: {:>19,}\n'.format(
+            self.__object, self.__worth, self.__coeff, self.__tax)
 
 
 class Apartment(Property):
+    """
+    Класс Квартира. Родительский класс: Property
+    Args:
+        object (str): передается название имущества
+        worth (int): передается стоимость имущества
+    Attributes:
+        coeff (float): ставка налогообложения для разных классов имущества
+        tax (int): сумма налога на имущество
+    """
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.001
@@ -22,12 +55,30 @@ class Apartment(Property):
 
 
 class Car(Property):
+    """
+    Класс Автомобиль. Родительский класс: Property
+    Args:
+        object (str): передается название имущества
+        worth (int): передается стоимость имущества
+    Attributes:
+        coeff (float): ставка налогообложения для разных классов имущества
+        tax (int): сумма налога на имущество
+    """
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.005
         self.tax = self.get_tax()
 
 class CountryHouse(Property):
+    """
+    Класс Загородный Дом. Родительский класс: Property
+    Args:
+        object (str): передается название имущества
+        worth (int): передается стоимость имущества
+    Attributes:
+        coeff (float): ставка налогообложения для разных классов имущества
+        tax (int): сумма налога на имущество
+    """
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.002
