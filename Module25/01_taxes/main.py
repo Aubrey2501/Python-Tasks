@@ -9,33 +9,27 @@ class Property():
         object (str): передается название имущества
         worth (int): передается стоимость имущества
     """
-    __coeff = 0
-    __tax = 0
+    coeff = 0
+    tax = 0
 
     def __init__(self, object, worth):
         self.__object = object
         self.__worth = worth
 
-    def set_tax(self):
-        """
-        Сеттер для расчета суммы налога
-        :param __worth: стоимость имущества1
-        :param __coeff: ставка налогообложения
-        """
-        self.__tax = self.__worth * self.__coeff
-
     def get_tax(self):
         """
         Геттер для получения суммы налога
+        :param __worth: стоимость имущества
+        :param __coeff: ставка налогообложения
         :return: __tax
         :rtype: int
         """
-        self.set_tax()
-        return self.__tax
+        self.tax = self.__worth * self.coeff
+        return self.tax
 
     def __str__(self):
         return 'Property object: {}\nWorth: {:>19,}\nTax rate: {:>13.1%}\nTax: {:>19,}\n'.format(
-            self.__object, self.__worth, self.__coeff, self.__tax)
+            self.__object, self.__worth, self.coeff, self.tax)
 
 
 class Apartment(Property):
