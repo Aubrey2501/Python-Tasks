@@ -19,19 +19,9 @@ class TaskManager:
     def new_task(self, task, priority):
         self.steck.add_item(task, priority)
 
-    def get_dct(self):
-        while True:
-            try:
-                i_tuple = self.steck.remove_item()
-                self.dct[i_tuple[0]] = i_tuple[1]
-            except KeyError:
-                break
-
-    def sort_steck(self):
-        self.get_dct()
-        sorted_tuple = sorted(self.dct.items(), key=lambda x: x[1])
-        self.dct.clear()
-        self.dct = dict(sorted_tuple)
+    def __str__(self):
+        print_str = self.set_result()
+        return print_str
 
     def set_result(self):
         self.sort_steck()
@@ -40,9 +30,19 @@ class TaskManager:
             result += ' '.join((str(i_priority), i_task, '\n'))
         return result
 
-    def __str__(self):
-        print_str = self.set_result()
-        return print_str
+    def sort_steck(self):
+        self.get_dct()
+        sorted_tuple = sorted(self.dct.items(), key=lambda x: x[1])
+        self.dct.clear()
+        self.dct = dict(sorted_tuple)
+
+    def get_dct(self):
+        while True:
+            try:
+                i_tuple = self.steck.remove_item()
+                self.dct[i_tuple[0]] = i_tuple[1]
+            except KeyError:
+                break
 
 
 my_steck = Steck()
