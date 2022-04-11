@@ -1,51 +1,51 @@
 # coding: utf-8
 
-class Steck:
+class Stack:
     def __init__(self):
-        self.stack = dict()
+        self.stack = []
 
-    def add_item(self, key, value):
-        self.stack[key] = value
+    def add_item(self, new_item):
+        self.stack.append(new_item)
 
     def remove_item(self):
-        return self.stack.popitem()
+        return self.stack.pop()
+
 
 
 class TaskManager:
     def __init__(self):
-        self.steck = my_steck
-        self.dct = dict()
+        self.stack = my_stack
+        self.lst = []
 
     def new_task(self, task, priority):
-        self.steck.add_item(task, priority)
+        new_item = (task, priority)
+        self.stack.add_item(new_item)
 
     def __str__(self):
         print_str = self.set_result()
         return print_str
 
     def set_result(self):
-        self.sort_steck()
+        self.sort_stack()
         result = 'Результат:\n'
-        for i_task, i_priority in self.dct.items():
-            result += ' '.join((str(i_priority), i_task, '\n'))
+        for item in self.lst:
+            result += ' '.join((str(item[1]), item[0], '\n'))
         return result
 
-    def sort_steck(self):
-        self.get_dct()
-        sorted_tuple = sorted(self.dct.items(), key=lambda x: x[1])
-        self.dct.clear()
-        self.dct = dict(sorted_tuple)
+    def sort_stack(self):
+        self.get_lst()
+        self.lst = sorted(self.lst, key=lambda x: x[1])
 
-    def get_dct(self):
+    def get_lst(self):
         while True:
             try:
-                i_tuple = self.steck.remove_item()
-                self.dct[i_tuple[0]] = i_tuple[1]
-            except KeyError:
+                item = self.stack.remove_item()
+                self.lst.append(item)
+            except IndexError:
                 break
 
 
-my_steck = Steck()
+my_stack = Stack()
 manager = TaskManager()
 manager.new_task("сделать уборку", 4)
 manager.new_task("помыть посуду", 4)
