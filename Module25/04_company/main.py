@@ -2,6 +2,13 @@ import random
 
 
 class Person:
+    """
+    Базовый класс Человек
+        Attributes:
+            name (str): имя
+            surname (str): фамилия
+            age (str): возраст
+    """
     def __init__(self, name, surname, age):
         self.name = name
         self.surname = surname
@@ -9,6 +16,15 @@ class Person:
 
 
 class Employee(Person):
+    """
+    Класс Работник. Родитель: Person, дочерние классы: Менеджер, Агент, Рабочий
+        Attributes:
+            name (str): имя
+            surname (str): фамилия
+            age (str): возраст
+            salary (int): зарплата
+            position (str) - название должности
+    """
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
         self.salary = 0
@@ -20,12 +36,32 @@ class Employee(Person):
 
 
 class Manager(Employee):
+    """
+    Класс Менеджер. Родитель: Employee
+        Attributes:
+            name (str): имя
+            surname (str): фамилия
+            age (str): возраст
+            salary (int): зарплата
+            position (str) - название должности
+    """
+
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
         self.salary = 13000
         self.position = 'Manager'
 
 class Agent(Employee):
+    """
+    Класс Агент. Родитель: Employee
+        Attributes:
+            name (str): имя
+            surname (str): фамилия
+            age (str): возраст
+            salary (int): зарплата
+            position (str): название должности
+            sales (int): объем продаж
+    """
 
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
@@ -34,11 +70,25 @@ class Agent(Employee):
         self.position = 'Agent'
 
     def set_salary(self, sales):
+        """Сеттер для расчета зарплаты
+        param:
+            sales (int): объем продаж
+        """
         self.sales = sales
         self.salary = round(5000 + 0.05 * self.sales, 2)
 
 
 class Worker(Employee):
+    """
+    Класс Рабочий. Родитель: Employee
+        Attributes:
+            name (str): имя
+            surname (str): фамилия
+            age (str): возраст
+            salary (int): зарплата
+            position (str): название должности
+            hours_worked (int): количество отработанных часов
+    """
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
         self.salary = 0
@@ -46,11 +96,22 @@ class Worker(Employee):
         self.position = 'Worker'
 
     def set_salary(self, hours):
+        """Сеттер для расчета зарплаты
+        param:
+            hours_worked (int): количество отработанных часов
+        """
         self.hours_worked = hours
         self.salary = 100 * self.hours_worked
 
 
 def init_employees (category, names):
+    """
+    Процедура инициализации работников из списка
+    :param category: категория работника
+    :param names: список с персональными данными работников
+    :argument employee (type): элемент одного из классов: Manager, Agent или Worker
+    :return: employers_lst: список со всеми элементами классов
+    """
     employers_lst = []
     for i_person in names:
         name, surname, age = i_person.split(' ')

@@ -4,6 +4,17 @@ import random
 
 
 class Car:
+    """
+    Базовый Класс Автомобиль
+    Attributes:
+        type (str): тип транспортного средства
+        coord_x (int): координата по оси Х
+        coord_y (int): координата по оси Y
+        direction (int): направление движения в градусах
+    :param:
+        x - начальная координата по оси Х
+        y - начальная координата по оси Y
+    """
     def __init__(self, car_type, x, y):
         self.type = car_type
         self.coord_x = x
@@ -11,18 +22,30 @@ class Car:
         self.direction = 0
 
     def turn_right(self, angle):
+        """
+        Метод: поворот направо
+        :param angle: (int): угол поворота в градусах
+        """
         self.direction += angle
         if self.direction >= 360:
             self.direction -= 360
         print('Поворачиваем на {} градусов вправо. Текущее направление: {} градусов'.format(angle, self.direction))
 
     def turn_left(self, angle):
+        """
+        Метод: поворот налево
+        :param angle: (int): угол поворота в градусах
+        """
         self.direction -= angle
         if self.direction < 0:
             self.direction += 360
         print('Поворачиваем на {} градусов влево. Текущее направление: {} градусов'.format(angle, self.direction))
 
     def move(self, distance):
+        """
+        Метод: движение прямо
+        :param distance (int): расстояние в км.
+        """
         print('Едем {}км вперед'.format(distance))
         self.coord_x += distance * math.sin(math.radians(self.direction))
         self.coord_x = round(self.coord_x, 1)
@@ -34,6 +57,21 @@ class Car:
 
 
 class Bus(Car):
+    """
+    Класс Автобус, дочерний от класса Автомобиль
+    Attributes:
+        bus_type (str): тип транспортного средства
+        coord_x (int): координата по оси Х
+        coord_y (int): координата по оси Y
+        direction (int): направление движения в градусах
+        passengers (int): количество пассажиров
+        money (int): количество денег, собранных за проезд
+        capasity (int): вместимость автобуса (пассажиров)
+        ticket_price (int): цена билета
+    :param:
+        x - начальная координата по оси Х
+        y - начальная координата по оси Y
+    """
     def __init__(self, bus_type, x, y):
         super().__init__(bus_type, x, y)
         self.passengers = 0
@@ -42,15 +80,34 @@ class Bus(Car):
         self.ticket_price = 50
 
     def turn_left(self, angle):
+        """
+        Метод: поворот налево
+        :param angle: (int): угол поворота в градусах
+        """
         super(Bus, self).turn_left(angle=angle)
 
+
     def turn_right(self, angle):
+        """
+        Метод: поворот направо
+        :param angle: (int): угол поворота в градусах
+        """
         super(Bus, self).turn_right(angle=angle)
 
     def move(self, distance):
+        """
+        Метод: движение прямо
+        :param distance (int): расстояние в км.
+        """
         super(Bus, self).move(distance=distance)
 
+
     def bus_stop(self, get_in, get_out):
+        """
+        Метод: остановка автобуса
+        :param get_in: количество вошедших пассажиров
+        :param get_out: количество пассажиров, вышедших из автобуса
+        """
         print('Остановка. Выходят {} человек, входят {} человек.'.format(get_out, get_in))
         self.passengers -= get_out
         if get_in > self.capacity - self.passengers:
