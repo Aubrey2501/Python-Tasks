@@ -35,3 +35,10 @@ while True:
     my_dict = MyDict(example_dct)
     i_key = input('Введите ключ словаря: ')
     print(my_dict.get(i_key))
+
+# TODO Куда проще наследоваться сразу от словаря и переопределить "get"
+#  class MyDict(dict):
+#      def get(self, key, default=0):
+#          return super().get(key, default)
+
+# зачет!

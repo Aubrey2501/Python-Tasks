@@ -149,3 +149,5 @@ my_bus.turn_right(40)
 my_bus.move(2)
 my_bus.bus_stop(12, 8)
 print(my_bus)
+
+# зачет!

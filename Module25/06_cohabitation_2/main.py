@@ -331,3 +331,5 @@ for i_day in range(366):
         print(cat)
     except Exception as error:
         print(error)
+
+# зачет!

@@ -3,11 +3,11 @@ import random
 
 class Person:
     """
-    Базовый класс Человек
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Attributes:
-            name (str): имя
-            surname (str): фамилия
-            age (str): возраст
+            name (str): пїЅпїЅпїЅ
+            surname (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            age (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     """
     def __init__(self, name, surname, age):
         self.name = name
@@ -17,13 +17,13 @@ class Person:
 
 class Employee(Person):
     """
-    Класс Работник. Родитель: Person, дочерние классы: Менеджер, Агент, Рабочий
+    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: Person, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Attributes:
-            name (str): имя
-            surname (str): фамилия
-            age (str): возраст
-            salary (int): зарплата
-            position (str) - название должности
+            name (str): пїЅпїЅпїЅ
+            surname (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            age (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            salary (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            position (str) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     """
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
@@ -37,13 +37,13 @@ class Employee(Person):
 
 class Manager(Employee):
     """
-    Класс Менеджер. Родитель: Employee
+    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: Employee
         Attributes:
-            name (str): имя
-            surname (str): фамилия
-            age (str): возраст
-            salary (int): зарплата
-            position (str) - название должности
+            name (str): пїЅпїЅпїЅ
+            surname (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            age (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            salary (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            position (str) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     """
 
     def __init__(self, name, surname, age):
@@ -53,14 +53,14 @@ class Manager(Employee):
 
 class Agent(Employee):
     """
-    Класс Агент. Родитель: Employee
+    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: Employee
         Attributes:
-            name (str): имя
-            surname (str): фамилия
-            age (str): возраст
-            salary (int): зарплата
-            position (str): название должности
-            sales (int): объем продаж
+            name (str): пїЅпїЅпїЅ
+            surname (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            age (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            salary (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            position (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            sales (int): пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     """
 
     def __init__(self, name, surname, age):
@@ -70,9 +70,9 @@ class Agent(Employee):
         self.position = 'Agent'
 
     def set_salary(self, sales):
-        """Сеттер для расчета зарплаты
+        """пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         param:
-            sales (int): объем продаж
+            sales (int): пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         """
         self.sales = sales
         self.salary = round(5000 + 0.05 * self.sales, 2)
@@ -80,14 +80,14 @@ class Agent(Employee):
 
 class Worker(Employee):
     """
-    Класс Рабочий. Родитель: Employee
+    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: Employee
         Attributes:
-            name (str): имя
-            surname (str): фамилия
-            age (str): возраст
-            salary (int): зарплата
-            position (str): название должности
-            hours_worked (int): количество отработанных часов
+            name (str): пїЅпїЅпїЅ
+            surname (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            age (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            salary (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            position (str): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            hours_worked (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     """
     def __init__(self, name, surname, age):
         super().__init__(name, surname, age)
@@ -96,9 +96,9 @@ class Worker(Employee):
         self.position = 'Worker'
 
     def set_salary(self, hours):
-        """Сеттер для расчета зарплаты
+        """пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         param:
-            hours_worked (int): количество отработанных часов
+            hours_worked (int): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         """
         self.hours_worked = hours
         self.salary = 100 * self.hours_worked
@@ -106,11 +106,11 @@ class Worker(Employee):
 
 def init_employees (category, names):
     """
-    Процедура инициализации работников из списка
-    :param category: категория работника
-    :param names: список с персональными данными работников
-    :argument employee (type): элемент одного из классов: Manager, Agent или Worker
-    :return: employers_lst: список со всеми элементами классов
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    :param category: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    :param names: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    :argument employee (type): пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: Manager, Agent пїЅпїЅпїЅ Worker
+    :return: employers_lst: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     """
     employers_lst = []
     for i_person in names:
@@ -151,3 +151,5 @@ for worker in workers:
     print(worker)
 
 
+
+# Р·Р°С‡РµС‚!

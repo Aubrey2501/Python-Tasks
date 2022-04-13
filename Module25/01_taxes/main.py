@@ -42,6 +42,7 @@ class Apartment(Property):
         coeff (float): ставка налогообложения для разных классов имущества
         tax (int): сумма налога на имущество
     """
+
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.001
@@ -58,10 +59,12 @@ class Car(Property):
         coeff (float): ставка налогообложения для разных классов имущества
         tax (int): сумма налога на имущество
     """
+
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.005
         self.tax = self.get_tax()
+
 
 class CountryHouse(Property):
     """
@@ -73,6 +76,7 @@ class CountryHouse(Property):
         coeff (float): ставка налогообложения для разных классов имущества
         tax (int): сумма налога на имущество
     """
+
     def __init__(self, object, worth):
         super().__init__(object, worth)
         self.coeff = 0.002
@@ -112,3 +116,4 @@ while True:
 
 print('\nИтоговая сумма налога:', sum_tax)
 
+# зачет!
