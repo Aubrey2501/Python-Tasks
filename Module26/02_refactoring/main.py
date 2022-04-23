@@ -1,16 +1,12 @@
-# can_continue = True
-# for x in list_1:
-#     for y in list_2:
-#         result = x * y
-#         print(x, y, result)
-#         if result == to_find:
-#             print('Found!!!')
-#             can_continue = False
-#             break
-#     if not can_continue:
-#         break
-
 def refactoring(lst1, lst2):
+    """
+    Функция генерации списка произведений аргументов
+    Args:
+        lst1 (list, int): первый список со значениями
+        lst2 (list, int): второй список со значениями
+    Returns:
+        result (generator, int) - произведения аргументов из первого списка на аргументы из второго списка
+    """
     for x in lst1:
         for y in lst2:
             result = x * y
