@@ -1,4 +1,13 @@
 class SqrtInt:
+    """
+    Класс-итератор для определения последовательности квадратов чисел
+    Attributes:
+        __cur_num (int): текущее число в последовательности
+        __sqrt (int): квадрат от __cur_num
+
+    Args:
+        max_num (int): предельное число в последовательности __cur_num
+    """
     def __init__(self, max_num):
         self.__max_num = max_num
         self.__cur_num = 0
@@ -8,6 +17,11 @@ class SqrtInt:
         return self
 
     def __next__(self):
+        """
+        Шаг next итератора
+        Returns:
+        символьная строка для вывода ответа
+        """
         self.__cur_num += 1
         if self.__cur_num > self.__max_num:
             raise StopIteration
@@ -16,6 +30,14 @@ class SqrtInt:
 
 
 def sqrt_gen(max_num):
+    """
+    Функция - генератор для вычисления квадратов чисел
+    Args:
+        max_num (int): предельное число в последовательности чисел
+    Returns:
+        i_num (int): текущее число в последовательности
+        i_sqrt (int): квадрат от числа i_num
+    """
     for i_num in range(1, max_num + 1):
         i_sqrt = i_num ** 2
         yield i_num, i_sqrt
