@@ -1,5 +1,9 @@
+from typing import Optional, Any
+
+
 class Node:
-    def __init__(self, value=None, next=None):
+    """  Класс "Узел" """
+    def __init__(self, value: Optional[Any] = None, next: Optional[Any] = None) ->None:
         self.value = value
         self.next = next
 
@@ -8,11 +12,17 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
+    """ Класс "Связанный список" """
+    def __init__(self) -> None:
+        self.head: Optional[Node] = None
         self.length = 0
 
-    def append(self, value):
+    def append(self, value: Any) -> None:
+        """
+        Метод добавить узел
+        Args:
+            value: данные узла
+        """
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
@@ -25,7 +35,12 @@ class LinkedList:
         last.next = new_node
         self.length += 1
 
-    def remove(self, index):
+    def remove(self, index) -> None:
+        """
+        Метод удаления узла
+        Args:
+            index (int): индекс подлежащего удалеению узла
+        """
         cur_index = 0
         cur_node = self.head
         if self.length == 0 or index >= self.length:
@@ -48,7 +63,7 @@ class LinkedList:
             prev.next = cur_node.next
             self.length -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.head is not None:
             current = self.head
             values = [str(current.value)]
@@ -58,7 +73,12 @@ class LinkedList:
             return '[{values}]'.format(values=' '.join(values))
         return 'Nodes: []'
 
-    def get(self, index):
+    def get(self, index) -> None:
+        """
+        Геттер для получения содержимого узла по индексу
+        Args:
+            index(int): индекс узла
+        """
         cur_index = 0
         cur_node = self.head
         if self.length == 0 or index >= self.length:

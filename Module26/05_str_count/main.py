@@ -1,6 +1,14 @@
 import os
 
+
 def sum_strings(dir_name):
+    """
+    Функция подсчета строк кода в файлах указанной директории
+    Args:
+        dir_name (str): имя директории с файлами *.py
+    Returns:
+        string_numbers (list generator) - список с количеством строк кода в каждом встреченном файле
+    """
     directory_lst = os.listdir(dir_name)
     # print(directory_lst)
     for i_file in directory_lst:

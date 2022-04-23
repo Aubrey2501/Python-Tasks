@@ -2,12 +2,28 @@
 import os
 
 
-def gen_files_path(dir_name):
+def find_dir(dir_name):
+    """
+    Функция рекурсивного поиска пути к директории с указанным именем в дереве каталогов, начиная с корневого
+    Args:
+        dir_name (str): наименование искомого каталога
+    Returns:
+        root(str): абсолютный путь к искомому каталогу
+    """
     for root, dirs, files in os.walk(top='c:/'):
         if os.path.isdir(root) and root.endswith(dir_name):
-            dir_path = root
-            break
+            return root
 
+
+def gen_files_path(dir_name):
+    """
+    Функция - генератор имен файлов, находящихся в каталогах искомой директории
+    Args:
+        dir_name (str): наименование искомого каталога
+    Returns:
+        files_list (generator list): список- генератор с именами файлов
+    """
+    dir_path = find_dir(dir_name)
     dir_list = os.listdir(dir_path)
     for i_elem in dir_list:
         i_path = os.path.join(dir_path, i_elem)
