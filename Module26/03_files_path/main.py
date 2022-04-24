@@ -43,4 +43,4 @@ for i_elem in dir_list:
             for i_file in item:
                 print(i_file)
 
-
+# зачет!

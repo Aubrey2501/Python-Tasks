@@ -22,5 +22,4 @@ if to_find in my_generator:
 else:
     print('Not found')
 
-
-
+# зачет!

@@ -26,3 +26,4 @@ try:
 except AttributeError as error:
     print(error)
 
+# зачет!

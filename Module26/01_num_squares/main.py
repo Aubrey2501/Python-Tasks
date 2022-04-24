@@ -58,3 +58,5 @@ print('\nРеализация генераторного выражения:')
 gen_term = ((i_num, i_num ** 2) for i_num in range(1, N + 1))
 for i_num, i_sqrt in gen_term:
     print('{:<2} **  2  = {}'.format(i_num, i_sqrt))
+
+# зачет!
