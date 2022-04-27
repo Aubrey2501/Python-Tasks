@@ -3,6 +3,7 @@ import time
 
 
 def slower(func: Callable) -> Any:
+    """Декоратор, замедляющий функцию на 2 секунды"""
     def wrapped_func(*args: Any, **kwargs: Any) -> Any:
         time.sleep(2)
         result = func(*args, **kwargs)
