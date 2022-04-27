@@ -1,5 +1,6 @@
 import datetime
 from typing import Callable
+import functools
 
 LOG_File = []
 
@@ -7,6 +8,7 @@ LOG_File = []
 def debug(func: Callable) -> Callable:
     """Декоратор. При каждом вызове декорируемой функции выводит её имя (вместе со всеми передаваемыми аргументами),
      а затем — какое значение она возвращает."""
+    @functools.wraps(func)
     def wrapped_func(*args, **kwargs) -> str:
         print('\nВызывается: {func}'.format(
             func=func.__name__), end='(')

@@ -1,11 +1,13 @@
 import datetime
 from typing import Callable
+import functools
 
 LOG_File = []
 
 
 def logging(func: Callable) -> Callable:
     """Декоратор. Логирует функцию и заносит ошибки в файл"""
+    @functools.wraps(func)
     def wrapped_func(*args, **kwargs):
         try:
             LOG_File.append('{time}: {func} {docs}'.format(

@@ -1,10 +1,12 @@
 from typing import Callable, Any
+import functools
 
 COUNTER = dict()
 
 
 def counter(func: Callable) -> Callable:
     """Декоратор. Считает и выводит количество вызовов функции"""
+    @functools.wraps(func)
     def wrapped_func(*args: Any, **kwargs: Any) -> Any:
         if func.__name__ not in COUNTER:
             COUNTER[func.__name__] = 1
