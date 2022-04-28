@@ -6,6 +6,7 @@ COUNTER = dict()
 
 def counter(func: Callable) -> Callable:
     """Декоратор. Считает и выводит количество вызовов функции"""
+
     @functools.wraps(func)
     def wrapped_func(*args: Any, **kwargs: Any) -> Any:
         if func.__name__ not in COUNTER:
@@ -15,6 +16,7 @@ def counter(func: Callable) -> Callable:
         print(f'Функция {func.__name__}. Вызовов: {COUNTER[func.__name__]}')
         result = func(*args, **kwargs)
         return result
+
     return wrapped_func
 
 
@@ -27,3 +29,4 @@ test()
 test()
 test()
 
+# зачет!

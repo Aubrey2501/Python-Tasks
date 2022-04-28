@@ -31,4 +31,5 @@ def sqrt_gen(num: int) -> str:
 for i_num in range(1, 11):
     print(sqrt_gen(i_num))
 
+# зачет!
 

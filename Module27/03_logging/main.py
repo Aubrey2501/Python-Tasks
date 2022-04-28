@@ -63,4 +63,5 @@ print(say_goodbye('Bob'))           # ошибка в позиционном а�
 for i_elem in LOG_File:
     print(i_elem)
 
+# зачет!
 
