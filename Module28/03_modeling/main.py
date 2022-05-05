@@ -1,4 +1,4 @@
-import abc
+from typing import Any, SupportsInt
 from abc import ABC
 import math
 
@@ -14,7 +14,8 @@ class Figure(ABC):
 
 
 class Foursquare(Figure):
-    def __init__(self, length):
+    """ Класс Квадрат. Родительский класс Figure """
+    def __init__(self, length: int) -> None:
         super().__init__()
         self.figure = 'Квадрат'
         self._length = length
@@ -23,7 +24,8 @@ class Foursquare(Figure):
         self.__str__()
 
     def __str__(self):
-        return f'{self.figure} с длинной стороны {self._length}, периметром {self.__perimeter} и площадью {self.__square}'
+        return f'{self.figure} с длинной стороны {self._length}, периметром {self.__perimeter} ' \
+               f'и площадью {self.__square}'
 
     @property
     def square(self):
@@ -43,7 +45,8 @@ class Foursquare(Figure):
 
 
 class Triangle(Figure):
-    def __init__(self, length, height):
+    """ Класс Треугольник. Родительский класс Figure """
+    def __init__(self, length: int, height: int) -> None:
         super().__init__()
         self.figure = 'Треугольник'
         self._length = length
@@ -73,7 +76,7 @@ class Triangle(Figure):
 
 
 class Mixin3D(Triangle, Foursquare):
-
+    """Класс-примесь для инициации вычисления площади плоских фигур"""
     def figure_square(self, i_figure):
             if i_figure == 'Foursquare':
                 return Foursquare.set_4square(self)
@@ -82,7 +85,17 @@ class Mixin3D(Triangle, Foursquare):
 
 
 class Pyramid(Mixin3D):
-    def __init__(self, length, height):
+    """
+    Класс Пирамида. Родительский класс Mixin3D
+    Parameters:
+        length (int): длина стороны основания
+        height (int): высота боковой поверхности
+    Attributes:
+        self.figure (str): название фигуры
+        self.__sum_square (float): суммарная площадь поверхностей
+        self.figures (list): список плоских фигур, из которых состоит поверхность фигуры
+      """
+    def __init__(self, length: int, height: int) -> None:
         self.figure = 'Пирамида'
         self._length = length
         self._height = height
@@ -99,7 +112,16 @@ class Pyramid(Mixin3D):
 
 
 class Cube(Mixin3D):
-    def __init__(self, length):
+    """
+    Класс Куб. Родительский класс Mixin3D
+        Parameters:
+        length (int): длина стороны грани
+    Attributes:
+        self.figure (str): название фигуры
+        self.__sum_square (float): суммарная площадь поверхностей
+        self.figures (list): список плоских фигур, из которых состоит поверхность фигуры
+      """
+    def __init__(self, length: int) -> None:
         self.figure = 'Куб'
         self._length = length
         # self._height = height
