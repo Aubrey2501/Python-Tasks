@@ -19,8 +19,8 @@ class Foursquare(Figure):
         super().__init__()
         self.figure = 'Квадрат'
         self._length = length
-        self.__square = self.set_4square()
-        self.__perimeter = self.set_4perimeter()
+        self.__square = self.set_square()
+        self.__perimeter = self.set_perimeter()
         self.__str__()
 
     def __str__(self):
@@ -35,11 +35,11 @@ class Foursquare(Figure):
     def perimeter(self):
         return self.__perimeter
 
-    def set_4square(self):
+    def set_square(self):
         self.__square = self._length ** 2
         return self.__square
 
-    def set_4perimeter(self):
+    def set_perimeter(self):
         self.__perimeter = self._length * 4
         return self.__perimeter
 
@@ -51,8 +51,8 @@ class Triangle(Figure):
         self.figure = 'Треугольник'
         self._length = length
         self._height = height
-        self.__square = self.set_3square()
-        self.__perimeter = self.set_3perimeter()
+        self.__square = self.set_square()
+        self.__perimeter = self.set_perimeter()
 
     def __str__(self):
         return f'{self.figure} с длиной основания {self._length}, высотой {self._height}, ' \
@@ -66,11 +66,11 @@ class Triangle(Figure):
     def perimeter(self):
         return self.__perimeter
 
-    def set_3square(self):
+    def set_square(self):
         self.__square = (self._length / 2) * self._height
         return self.__square
 
-    def set_3perimeter(self):
+    def set_perimeter(self):
         self.__perimeter = self._length + 2 * (math.sqrt((self._length / 2) ** 2 + self._height ** 2))
         return self.__perimeter
 
@@ -78,10 +78,10 @@ class Triangle(Figure):
 class Mixin3D(Triangle, Foursquare):
     """Класс-примесь для инициации вычисления площади плоских фигур"""
     def figure_square(self, i_figure):
-            if i_figure == 'Foursquare':
-                return Foursquare.set_4square(self)
-            else:
-                return Triangle.set_3square(self)
+        if i_figure == 'Foursquare':
+            return Foursquare.set_square(self)
+        else:
+            return Triangle.set_square(self)
 
 
 class Pyramid(Mixin3D):
