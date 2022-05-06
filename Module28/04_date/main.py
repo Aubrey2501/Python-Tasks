@@ -1,5 +1,6 @@
 from abc import ABC
 
+
 class Date(ABC):
     """
     Абстрактный класс Дата.
