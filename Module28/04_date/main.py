@@ -15,9 +15,9 @@ class Date(ABC):
     @classmethod
     def __init__(cls, date_str: str) -> None:
         cls.date_str = date_str
-        cls.day = ''
-        cls.month = ''
-        cls.year = ''
+        cls.day = None
+        cls.month = None
+        cls.year = None
 
     @classmethod
     def from_string(cls, date_str: str) -> str:
