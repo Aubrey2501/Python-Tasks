@@ -7,7 +7,7 @@ class MyMath(ABC):
 
     @classmethod
     def circle_len(cls, radius) -> float:
-        cls.radius = radius
+        cls.radius = radius  # TODO Добавлять атрибут нет смысла
         return 2 * cls.radius * math.pi
 
     @classmethod
@@ -34,3 +34,5 @@ print(res_1)
 print(res_2)
 print(res_3)
 print(res_4)
+
+# зачет!

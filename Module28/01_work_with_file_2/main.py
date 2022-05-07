@@ -21,3 +21,5 @@ with File('example.txt', 'r') as file:
     text = file.read().split()
 with File('example.txt', 'w') as file:
     file.write('Всем привет!')
+
+# зачет!

@@ -149,3 +149,5 @@ print(my_pyramid)
 print()
 my_pyramid = Cube(length=5)
 print(my_pyramid)
+
+# зачет!
