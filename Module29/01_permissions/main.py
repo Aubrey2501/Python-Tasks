@@ -1,16 +1,15 @@
 import functools
 from typing import Callable
-from functools import wraps
 
 
-def check_permission(user_permissions):
-    def action(func):
+def check_permission(user: str = '') -> Callable:
+    """Декоратор для установления прав пользователя на вызываемые функции"""
+    def action(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapped(*args, **kwargs):
-            print('wrapping', args, kwargs)
-            for i_permission in user_permissions:
-                result = func(*args, **kwargs)
-                print(result)
+            if user not in user_permissions:
+                raise PermissionError(f'У пользователя недостаточно прав, чтобы выполнить функцию {func.__name__}')
+            result = func(*args, **kwargs)
             return result
         return wrapped
     return action
@@ -20,12 +19,16 @@ def check_permission(user_permissions):
 def delete_site():
     print('Удаляем сайт')
 
+
 @check_permission('user_1')
 def add_comment():
     print('Добавляем комментарий')
 
 
-user_permissions = ['admin']
+try:
+    user_permissions = ['admin']
 
-delete_site()
-add_comment()
+    delete_site()
+    add_comment()
+except PermissionError as err:
+    print(err)
