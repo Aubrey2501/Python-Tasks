@@ -2,16 +2,19 @@ import functools
 from typing import Callable
 from functools import wraps
 
-user_permissions = ['admin']
 
+def check_permission(user_permissions):
+    def action(func):
+        @functools.wraps(func)
+        def wrapped(*args, **kwargs):
+            print('wrapping', args, kwargs)
+            for i_permission in user_permissions:
+                result = func(*args, **kwargs)
+                print(result)
+            return result
+        return wrapped
+    return action
 
-def check_permission(func):
-    @functools.wraps
-    def wrapper(*args, **kwargs):
-        result = func(*args, **kwargs)
-        print('wrapping')
-        return result
-    return wrapper
 
 @check_permission('admin')
 def delete_site():
@@ -21,6 +24,8 @@ def delete_site():
 def add_comment():
     print('Добавляем комментарий')
 
+
+user_permissions = ['admin']
 
 delete_site()
 add_comment()
