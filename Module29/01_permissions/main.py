@@ -7,10 +7,14 @@ def check_permission(user: str = '') -> Callable:
     def action(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapped(*args, **kwargs):
-            if user not in user_permissions:
-                raise PermissionError(f'У пользователя недостаточно прав, чтобы выполнить функцию {func.__name__}')
-            result = func(*args, **kwargs)
-            return result
+            try:
+                if user not in user_permissions:
+                    raise PermissionError(f'У пользователя недостаточно прав, чтобы выполнить функцию {func.__name__}')
+                result = func(*args, **kwargs)
+                return result
+            except PermissionError as err:
+                print(err)
+                return None
         return wrapped
     return action
 
@@ -25,10 +29,7 @@ def add_comment():
     print('Добавляем комментарий')
 
 
-try:
-    user_permissions = ['admin']
+user_permissions = ['admin']
+delete_site()
+add_comment()
 
-    delete_site()
-    add_comment()
-except PermissionError as err:
-    print(err)
