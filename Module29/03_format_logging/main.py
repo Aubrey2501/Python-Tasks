@@ -18,7 +18,7 @@ def timer(func: Callable, time_frm: str, cls_name: str) -> Callable:
     return wrapper
 
 
-def log_methods(frm=None):
+def log_methods(frm: str = None) -> Callable:
     @functools.wraps(frm)
     def wrapper(cls):
         for i_method_name in dir(cls):
