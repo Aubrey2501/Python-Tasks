@@ -29,7 +29,7 @@ def is_prime(max_num: int) -> List[int]:
 
 
 @timer
-def prime_generator(max_num: int):
+def prime_comprehantion(max_num: int):
     result = [i_num for i_num in range(2, max_num + 1) if all(i_num % i_div for i_div in range(2, i_num - 1)) != 0]
     yield result
 
@@ -44,6 +44,6 @@ def prime_filter(max_num):
 
 print(is_prime(1000))
 print()
-print(list(prime_generator(1000)))
+print(list(prime_comprehantion(1000)))
 print()
 print(list(prime_filter(1000)))
