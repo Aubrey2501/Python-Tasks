@@ -22,7 +22,7 @@ def example():
     return 'OK'
 
 
-app = {'//': example('//')}
+app = {'//': example('//')}  # TODO Лучше чтобы декоратор добавлял ключи в словарик
 
 route = app.get('//')
 if route:
@@ -30,3 +30,5 @@ if route:
     print('Ответ:', response)
 else:
     print('Такого пути нет')
+
+# зачет!

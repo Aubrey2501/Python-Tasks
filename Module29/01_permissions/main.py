@@ -33,3 +33,5 @@ user_permissions = ['admin']
 delete_site()
 add_comment()
 
+
+# зачет!
