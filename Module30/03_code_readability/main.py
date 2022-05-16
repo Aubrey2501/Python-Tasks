@@ -6,12 +6,14 @@ import math
 
 def timer(func: Callable) -> Callable:
     functools.wraps(func)
+
     def wrapper(*args, **kwargs):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
         print('Время выполнения функции {}: {}s'.format(func.__name__, round(end - start, 5)))
         return result
+
     return wrapper
 
 
@@ -37,8 +39,8 @@ def prime_comprehantion(max_num: int):
 @timer
 def prime_filter(max_num):
     result = filter(lambda i_num: i_num in range(2, max_num + 1)
-                if all(i_num % i_div for i_div in range(2, i_num - 1)) != 0 else None,
-                list(i_num for i_num in range(2, max_num + 1)))
+    if all(i_num % i_div for i_div in range(2, i_num - 1)) != 0 else None,
+                    list(i_num for i_num in range(2, max_num + 1)))
     return result
 
 
@@ -47,3 +49,5 @@ print()
 print(list(prime_comprehantion(1000)))
 print()
 print(list(prime_filter(1000)))
+
+# зачет!

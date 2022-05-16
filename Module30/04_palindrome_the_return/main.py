@@ -9,3 +9,5 @@ def is_palindrome(string: str) -> bool:
 
 print(is_palindrome('abcba'))
 print(is_palindrome('abbbc'))
+
+# зачет!
