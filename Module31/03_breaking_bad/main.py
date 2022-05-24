@@ -1,22 +1,22 @@
 import json
-import functools
 import requests
 
-# api = 'https://www.breakingbadapi.com/api/deaths'
-# my_info = requests.get(api)
-# my_json = json.loads(my_info.text)
-#
-#
-# with open('breakingbad.json', 'w') as file:
-#     json.dump( my_json, file, indent=4)
+api = 'https://www.breakingbadapi.com/api/deaths'
+my_info = requests.get(api)
+my_json = json.loads(my_info.text)
+
+
+with open('breakingbad.json', 'w') as file:
+    json.dump(my_json, file, indent=4)
 
 with open('breakingbad.json', 'r') as file:
-    lst_dict = json.load(file)
-    # print(lst_dict)
+    episodes_lst = json.load(file)
 
-sort_lst = sorted(lst_dict, key=lambda x: x.get('season') + x.get('episode'))
+max_deaths = max(map(lambda item: item.get('number_of_deaths'), episodes_lst))
 
-
-print(functools.reduce(lambda count, item: count + item.get('number_of_deaths'), sort_lst, 0))
-
+for elem in episodes_lst:
+    if elem['number_of_deaths'] == max_deaths:
+        print('Эпизод сериала с наибольшим количеством смертей:\nСезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}'
+              .format(elem['season'], elem['episode'], elem['number_of_deaths']))
+        break
 
