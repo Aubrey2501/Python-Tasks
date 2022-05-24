@@ -1,10 +1,15 @@
 import requests
-import json
+from bs4 import BeautifulSoup
 
-web_page = 'http://www.columbia.edu/~fdc/sample.html'
 
-info = requests.get(web_page)
-my_json = json.loads(info.text)
+def get_h4(url):
+    info = requests.get(url).content
+    soup = BeautifulSoup(info, 'html.parser')
+    result = []
+    for link in soup.find_all('h3'):
+        result.append(link.get_text())
+    return result
 
-with open('test.json', 'w') as file:
-    json.dump(my_json, file, indent=4)
+
+page = 'http://www.columbia.edu/~fdc/sample.html'
+print(get_h4(page))
