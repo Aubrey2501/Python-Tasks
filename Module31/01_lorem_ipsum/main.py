@@ -8,3 +8,5 @@ Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, v
 
 four_letters = re.findall(r'\b\w{4}\b', text)
 print(four_letters)
+
+# зачет!

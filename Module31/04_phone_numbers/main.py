@@ -11,3 +11,4 @@ for elem in telephone_lst:
     else:
         print('не подходит')
 
+# зачет!

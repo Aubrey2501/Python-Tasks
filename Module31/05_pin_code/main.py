@@ -10,3 +10,5 @@ def rattle_lock(lock_code: tuple) -> str:
 
 my_code = (9, 8, 7, 9)
 print(rattle_lock(my_code))
+
+# зачет!
