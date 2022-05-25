@@ -1,22 +1,25 @@
 import json
 import requests
-# TODO Нужно также найти "id эпизода", чтобы его найти понадобится второй запрос - api/episodes
-api = 'https://www.breakingbadapi.com/api/deaths'
-my_info = requests.get(api)
-my_json = json.loads(my_info.text)
 
+api_death = 'https://www.breakingbadapi.com/api/deaths'
+my_info = requests.get(api_death)
+deaths_lst = json.loads(my_info.text)
 
-with open('breakingbad.json', 'w') as file:
-    json.dump(my_json, file, indent=4)
+api_episodes = 'https://www.breakingbadapi.com/api/episodes'
+my_info_2 = requests.get(api_episodes)
+episodes_lst = json.loads(my_info_2.text)
 
-with open('breakingbad.json', 'r') as file:
-    episodes_lst = json.load(file)
+max_deaths = max(map(lambda item: item.get('number_of_deaths'), deaths_lst))
 
-max_deaths = max(map(lambda item: item.get('number_of_deaths'), episodes_lst))
-
-for elem in episodes_lst:
+for elem in deaths_lst:
     if elem['number_of_deaths'] == max_deaths:
-        print('Эпизод сериала с наибольшим количеством смертей:\nСезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}'
-              .format(elem['season'], elem['episode'], elem['number_of_deaths']))
+        season = str(elem['season'])
+        episode = str(elem['episode'])
+        episode_id = (i_elem['episode_id'] for i_elem in episodes_lst
+                      if i_elem['season'] == season and i_elem['episode'] == episode)
+
+        print('Эпизод сериала с наибольшим количеством смертей:\n'
+              'ID эпизода: {}, Сезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}'
+              .format(list(episode_id)[0], season, episode, elem['number_of_deaths']))
         break
 
