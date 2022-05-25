@@ -1,4 +1,5 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 
 # TODO Круто, но задачу можно решить через регулярные выражения.
@@ -8,12 +9,28 @@ from bs4 import BeautifulSoup
 #  И получается что-то вроде - <h3 .*?>(скобочная группа) закрывающий тег h3
 def get_h4(url):
     info = requests.get(url).content
-    soup = BeautifulSoup(info, 'html.parser')
-    result = []
-    for link in soup.find_all('h3'):
-        result.append(link.get_text())
-    return result
+    pattern = ['\<h3 id\=\"contents\"\>CONTENTS\<\/h3>']
+    elems = re.findall('^(pattern)')
+
+
+    # soup = BeautifulSoup(info, 'html.parser')
+    # result = []
+    # for link in soup.find_all('h3'):
+    #     result.append(link.get_text())
+    # return result
 
 
 page = 'http://www.columbia.edu/~fdc/sample.html'
 print(get_h4(page))
+
+
+
+
+
+
+
+
+
+
+
+

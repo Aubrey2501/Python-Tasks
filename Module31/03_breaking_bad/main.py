@@ -11,15 +11,20 @@ episodes_lst = json.loads(my_info_2.text)
 
 max_deaths = max(map(lambda item: item.get('number_of_deaths'), deaths_lst))
 
-for elem in deaths_lst:
-    if elem['number_of_deaths'] == max_deaths:
-        season = str(elem['season'])
-        episode = str(elem['episode'])
-        episode_id = (i_elem['episode_id'] for i_elem in episodes_lst
-                      if i_elem['season'] == season and i_elem['episode'] == episode)
+season_episode = ((elem.get('season'), elem.get('episode')) for elem in deaths_lst
+                  if elem.get('number_of_deaths') == max_deaths)
+season_tup = tuple(season_episode)
 
-        print('Эпизод сериала с наибольшим количеством смертей:\n'
-              'ID эпизода: {}, Сезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}'
-              .format(list(episode_id)[0], season, episode, elem['number_of_deaths']))
-        break
+season = str(season_tup[0][0])
+episode = str(season_tup[0][1])
 
+episode_id_gen = (i_elem.get('episode_id') for i_elem in episodes_lst
+              if i_elem.get('season') == season and i_elem.get('episode') == episode)
+
+episode_id = tuple(episode_id_gen)[0]
+
+print('Эпизод сериала с наибольшим количеством смертей:\n'
+      'ID эпизода: {}, Сезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}'
+      .format(episode_id, season, episode, max_deaths))
+#
+#
