@@ -1,6 +1,6 @@
 import json
 import requests
-
+# TODO Нужно также найти "id эпизода", чтобы его найти понадобится второй запрос - api/episodes
 api = 'https://www.breakingbadapi.com/api/deaths'
 my_info = requests.get(api)
 my_json = json.loads(my_info.text)
