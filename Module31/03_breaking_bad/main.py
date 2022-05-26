@@ -28,5 +28,13 @@ print('Эпизод сериала с наибольшим количество�
       'ID эпизода: {}, Сезон: {}, Эпизод: {}, Кол-во смертей в эпизоде: {}\n'
       'Список погибших: {}'
       .format(episode_id, season, episode, max_deaths, death))
-#
-#
+
+result = dict()
+result['episode_id'] = episode_id
+result['season'] = season
+result['episode'] = episode
+result['max_deaths'] = max_deaths
+result['death'] = death
+
+with open('result_file.json', 'w') as file:
+    json.dump(result, file, indent=4)
