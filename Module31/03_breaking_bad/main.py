@@ -38,3 +38,5 @@ result['death'] = death
 
 with open('result_file.json', 'w') as file:
     json.dump(result, file, indent=4)
+
+# зачет!

@@ -14,14 +14,4 @@ def get_h4(url):
 page = 'http://www.columbia.edu/~fdc/sample.html'
 print(get_h4(page))
 
-
-
-
-
-
-
-
-
-
-
-
+# зачет!

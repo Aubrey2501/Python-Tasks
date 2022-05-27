@@ -8,3 +8,4 @@ print('Список номеров частных автомобилей:', priv
 
 taxi_nums = re.findall(r'\b\w[АВЕКМНОРСТУХ]\d{5,6}', all_numbers)
 print('Список номеров такси:', taxi_nums)
+# зачет!
