@@ -18,7 +18,7 @@ def slower_for_secs(_func: Optional[Callable] = None, *, num_seconds: int = 1) -
 
 
 @slower_for_secs(num_seconds=2)
-def sqrt_gen(num: int) -> str:
+def sqrt_gen(num: int, num_seconds: int) -> str:
     """
     Функция, возвращающая квадрат и куб числа
     Args:
@@ -31,8 +31,8 @@ def sqrt_gen(num: int) -> str:
     result = f'{num} ** 2 = {sqrt_num:>2};  {num} ** 3 = {cube_num}'
     return result
 
-
+num_seconds = 2
 for i_num in range(1, 11):
-    print(sqrt_gen(i_num))
+    print(sqrt_gen(i_num, num_seconds))
 
 
