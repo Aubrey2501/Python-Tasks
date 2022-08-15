@@ -4,8 +4,8 @@ from config_utils.config import HEADERS, LOCATIONS_URL
 
 
 def request_to_api(url, querystring, headers=HEADERS):
-	response = requests.get(url=url, params=querystring, headers=headers, timeout=10)
 	try:
+		response = requests.get(url=url, params=querystring, headers=headers, timeout=10)
 		if response.status_code == requests.codes.ok:
 			print('Модуль request_to_api отработал нормально')
 			return response

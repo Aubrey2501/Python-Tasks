@@ -253,7 +253,7 @@ def get_lowprices(city_id: str, dates: tuple, adults: int, children: str, hotels
 
                 break
 
-        media.append(caption)
+        # media.append(caption)
         bot.send_message(message.chat.id, caption)
         bot.send_media_group(message.from_user.id, media)
         # bot.send_location(message.chat.id, latitude=lat, longitude=lon)
