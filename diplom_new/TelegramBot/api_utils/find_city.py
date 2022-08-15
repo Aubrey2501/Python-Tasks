@@ -30,6 +30,6 @@ def get_cities(city):
 
         return cities
     else:
-        print('API doesnot resposponse')
+        print('find_city module. API does not response')
         return None
 

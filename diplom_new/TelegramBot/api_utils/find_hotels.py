@@ -1,5 +1,4 @@
 import json
-import os
 from api_utils.request_to_api import request_to_api
 from config_utils.config import PROPERTIES_URL, HEADERS
 
@@ -32,8 +31,9 @@ def get_hotels(city_id: str, dates: tuple, adults: int, children: str, hotels_co
             print('Модуль get_hotel:')
             for hotel in hotels:
                 print(hotel)
-        return hotels
-
+            return hotels
+        else:
+            return None
 
 def request_hotels(city_id: str, dates: tuple, adults: int, children: str, hotels_count: int, currency: str,
                    sort_order: str):

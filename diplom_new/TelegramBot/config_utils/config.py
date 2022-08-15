@@ -12,6 +12,7 @@ RAPID_API_HOST = os.getenv('RAPID_API_HOST')
 HEADERS = {"X-RapidAPI-Key": RAPID_API_KEY, "X-RapidAPI-Host": RAPID_API_HOST}
 LOCATIONS_URL = "https://hotels4.p.rapidapi.com/locations/v2/search"
 PROPERTIES_URL = "https://hotels4.p.rapidapi.com/properties/list"
+PHOTOS_URL = "https://hotels4.p.rapidapi.com/properties/get-hotel-photos"
 
 DEFAULT_COMMANDS = (
     ('start', "Запустить бота"),
@@ -28,11 +29,13 @@ MESSAGES = {
     'start': 'Привет, {0}!\nЧтобы увидеть список команд, введите /help',
     'help': '\n'.join([f'/{command} - {desk}' for command, desk in DEFAULT_COMMANDS]),
     'cancel': 'Команда отменена.\nЧтобы увидеть список команд, введите /help',
-    'lowprice': 'Это поиск самых дешевых отелей.\nДля начала введите город для поиска:' + CANCEL_TEXT,
-    'get_hotels_count': 'Введите количество отелей, которое необходимо вывести (не больше {0})'.format(
+    'lowprice': 'Это поиск самых дешевых отелей.\nДля начала введите город для поиска \n(Поиск по РФ и '
+                'Белоруссии временно не работает \U0001F623):' + CANCEL_TEXT,
+    'get_hotels_count': 'Введите минимальное количество отелей для просмотра (не больше {0})'.format(
         MAX_HOTELS_COUNT) + CANCEL_TEXT,
     'cities_error': 'К сожалению, города не найдены. Попробуйте снова.' + CANCEL_TEXT,
-    'success_cities': 'Выберете нужный город (район города) из списка',
+    'success_cities': 'Выберете нужный город (район города) из списка: ',
+    'success_hotels': 'Выберете отель из списка: ',
     'hotels_count_error': 'Количество отелей должно быть числом и меньше {0}'.format(MAX_HOTELS_COUNT),
     'get_photo_count': 'Введите количество фотографий отелей, которое необходимо вывести (не больше {0})'.format(
         MAX_PHOTOS_COUNT) + CANCEL_TEXT,
@@ -46,6 +49,7 @@ MESSAGES = {
                             ' превышать 13 лет '
                             '\nЕсли с Вами нет детей, введите "0"' + CANCEL_TEXT,
     'get_date_error': 'Ошибка ввода даты. Попробуйте еще раз' + CANCEL_TEXT,
-    'get_currency': 'В какой валюте выводить цены на отели? Валюта по умолчанию USD' + CANCEL_TEXT,
-    'currency_error': 'Код валюты должен состоять из трех латинских букв. Попробуйте еще раз'
+    'get_currency': 'В какой валюте выводить цены на отели? (RUR не работают \U0001F623) \nВалюта по умолчанию USD' + CANCEL_TEXT,
+    'currency_error': 'Код валюты должен состоять из трех латинских букв. Попробуйте еще раз',
+    'request_problem': 'Не удалось получить информацию из базы данных. \nК сожалению придется начать все сначала',
 }
