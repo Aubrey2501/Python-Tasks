@@ -1,1 +1,1 @@
-from . import start, help, highprices, lowprices, bestdeal
+from . import start, help, lowprice, highprice, bestdeal, history, other

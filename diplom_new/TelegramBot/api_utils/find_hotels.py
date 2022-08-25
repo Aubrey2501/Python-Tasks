@@ -1,57 +1,78 @@
 import json
-from api_utils.request_to_api import request_to_api
-from config_utils.config import PROPERTIES_URL, HEADERS
+import logging
 
-def get_hotels(city_id: str, dates: tuple, adults: int, children: str, hotels_count: int, photos_count: int,
-               currency: str, sort_order: str):
-    response = request_hotels(city_id, dates, adults, children, hotels_count, currency, sort_order)
-    if response:
-        print('response OK')
-        print(response.text)
+from config_utils.config import HEADERS, PROPERTIES_URL
+from requests import Response
 
+from api_utils.request_to_api import make_request
+
+
+def get_hotels(
+    city_id: str,
+    dates: tuple,
+    adults: int,
+    children: str,
+    hotels_count: int,
+    currency: str,
+    sort_order: str,
+    price_min: int,
+    price_max: int
+) -> list:
+    """Формируем список отелей из данных API"""
+
+    logging.info(f"Call: find_hotels.get_hotels({locals()})")
+    response = request_hotels(
+        city_id,
+        dates,
+        adults,
+        children,
+        hotels_count,
+        currency,
+        sort_order,
+        price_min,
+        price_max
+    )
+    hotels = []
+    if response is not None:
         data = json.loads(response.text)
-        hotels = []
-        if data['result'] == 'OK':
-            selection = data['data']['body']['searchResults']['results']
+        if data["result"] == "OK":
+            hotels = data["data"]["body"]["searchResults"]["results"]
 
-            # path = os.path.join('.\\database', 'hotels.json')
-            # if not os.path.exists(path):
-            #     file = open(path, 'w')
-            #     file.close()
-            #
-            # with open(path, 'w') as file:
-            #     json.dump(selection, file, indent=4)
-            #
-            # with open(path, 'r') as file:
-            #     selection = json.load(file)
-
-            for hotel in selection:  # Обрабатываем результат
-                hotels.append(hotel)
-            # # проверка результата
-            print('Модуль get_hotel:')
-            for hotel in hotels:
-                print(hotel)
-            return hotels
-        else:
-            return None
-
-def request_hotels(city_id: str, dates: tuple, adults: int, children: str, hotels_count: int, currency: str,
-                   sort_order: str):
-    """Формирование запроса к API"""
-
-    querystring = {"destinationId": city_id, "pageNumber": "1", "pageSize": str(hotels_count), "checkIn": str(dates[0]),
-                   "checkOut": str(dates[1]), "adults1": str(adults), "children1": children,
-                   "sortOrder": sort_order, "locale": "en_US", "currency": currency}
-    return request_to_api(url=PROPERTIES_URL, headers=HEADERS, querystring=querystring)
+    logging.debug(f"Return: find_hotels.get_hotels ->\n{hotels}")
+    return hotels
 
 
-# test
-# city_id = '1693814'
-# dates = ('2022-02-20', '2022-03-22')
-# adults = 4
-# children = '1'
-# hotels_count = 10
-# photos_count = 5
-# currency = 'USD'
-# sort_order = 'PRICE_LOWEST_FIRST'
-# hotels = get_hotels(city_id, dates, adults, children, hotels_count, photos_count, currency, sort_order)
+def request_hotels(
+    city_id: str,
+    dates: tuple,
+    adults: int,
+    children: str,
+    hotels_count: int,
+    currency: str,
+    sort_order: str,
+    price_min: int,
+    price_max: int
+) -> Response:
+    """Строим запрос и получаем данные по API"""
+
+    querystring = {
+        "destinationId": city_id,
+        "pageNumber": "1",
+        "pageSize": str(hotels_count),
+        "checkIn": str(dates[0]),
+        "checkOut": str(dates[1]),
+        "adults1": str(adults),
+        "children1": children,
+        "sortOrder": sort_order,
+        "locale": "ru_RU",
+        "currency": currency
+    }
+    if price_min is not None:
+        querystring["priceMin"] = price_min
+    if price_min is not None:
+        querystring["priceMax"] = price_max
+    
+    if sort_order == "DISTANCE_FROM_LANDMARK":
+        querystring["landmarkIds"] = 'City center' 
+        
+    return make_request(url=PROPERTIES_URL, headers=HEADERS, querystring=querystring)

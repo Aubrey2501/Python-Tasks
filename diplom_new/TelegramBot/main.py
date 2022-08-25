@@ -1,8 +1,17 @@
 from bot import bot
-from handlers import start, help, highprices, lowprices, bestdeal
+import handlers
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+# отключаем все логгеры кроме наших
+loggers = logging.Logger.manager.loggerDict
+for k in loggers:
+    if not 'pkg' in k:
+        loggers[k].disabled = True
+
+logging.getLogger("exchangelib.folders").disabled = True
+logging.getLogger("exchangelib.services").disabled = True
 
 
-if __name__ == '__main__':
-	bot.polling(non_stop=True)
-
-
+if __name__ == "__main__":
+    bot.polling(non_stop=True)

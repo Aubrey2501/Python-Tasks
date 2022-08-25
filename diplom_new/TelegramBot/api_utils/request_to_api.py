@@ -1,25 +1,20 @@
+import logging
 import requests
-from requests import HTTPError, ReadTimeout
-from config_utils.config import HEADERS, LOCATIONS_URL
+from config_utils.config import HEADERS
 
 
-def request_to_api(url, querystring, headers=HEADERS):
-	try:
-		response = requests.get(url=url, params=querystring, headers=headers, timeout=10)
-		if response.status_code == requests.codes.ok:
-			print('Модуль request_to_api отработал нормально')
-			return response
+def make_request(url, querystring, headers=HEADERS) -> requests.Response:
+    """Отправляем запрос к API, возвращаем успешный результат или None"""
+    
+    logging.info(f"Call: request_to_api.make_request({locals()})")
+    response = requests.get(
+        url=url,
+        params=querystring,
+        headers=headers,
+        timeout=20
+    )
+    if response.status_code != requests.codes.ok:
+        response = None
 
-	except TimeoutError:
-		print('Ошибка таймаута')
-		return None
-
-	except ReadTimeout:
-		print('Ошибка обращения к API: таймаут')
-		return None
-
-	except HTTPError:
-		print(f'Ошибка адреса: {url}. Сервер не отвечает')
-		return None
-
-
+    logging.debug(f"Return: request_to_api.make_request ->\n{response}")
+    return response
