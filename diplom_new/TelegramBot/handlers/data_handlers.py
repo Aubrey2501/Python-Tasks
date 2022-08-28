@@ -64,25 +64,20 @@ def run_handlers(message: Message, data: dict, handlers: list[tuple[Callable, st
 
 def set_next_handler(data: dict, handlers: list[Callable], chat_id: int):
     """Получает следующий обработчик из списка и устанавливает для следующего шага"""
-    # получаем обработчик и сообщение к нему
-    # и удаляем из списка
     handler, msg = handlers.pop()
     logging.info(f"Call: data_handlers.set_next_handler()")
     logging.debug(f"Call: data_handlers.set_next_handler({locals()})")
     logging.info(
         f"data_handlers.set_next_handler: {handler = }, is_handlers_empty = {not bool(handlers)}")
-    # если есть сообщение - выводим
+
     if msg is not None:
         bot.send_message(chat_id, msg)
-    # убираем прошлые обработчики
+
     bot.clear_step_handler_by_chat_id(chat_id)
-    # если список пуст, выполняем последнюю функцию
+
     if not handlers:
         handler(data.copy(), chat_id)
     else:
-        # иначе регистрируем обработчик,
-        # передав в него оставшиеся обработчики и данные для дальнейшей работы
-        # обязательно копируем данные, чтобы работа одного обработчика не сказывалась на другом
         bot.register_next_step_handler_by_chat_id(
             chat_id,
             partial(handler, data.copy(), handlers.copy())
@@ -112,7 +107,7 @@ def get_city(data: dict, next_handlers: list[Callable], message: Message):
                     callback_data=f"choose_city$${city['city_id']}"
                 )
             )
-        # отправляет список городов
+
         bot.send_message(
             message.chat.id,
             MESSAGES["success_cities"],
@@ -163,7 +158,6 @@ def get_start_date(data: dict, next_handlers: list[Callable], message: Message):
         data["start_date"] = start_date
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["get_date_error"])
         bot.register_next_step_handler(
             message,
@@ -190,7 +184,6 @@ def get_end_date(data: dict, next_handlers: list[Callable], message: Message):
         data["end_date"] = end_date
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["get_date_error"])
         bot.register_next_step_handler(
             message,
@@ -218,7 +211,6 @@ def get_adults_count(data: dict, next_handlers: list[Callable], message: Message
         data["adults_count"] = adults
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["adults_count_error"])
         bot.register_next_step_handler(
             message,
@@ -239,7 +231,6 @@ def get_children_age(data: dict, next_handlers: list[Callable], message: Message
         return
 
     try:
-        # проверяет формат и соответствие возрасту
         children = message.text
         if children == "0":
             children = None
@@ -252,7 +243,6 @@ def get_children_age(data: dict, next_handlers: list[Callable], message: Message
         data["children_age"] = children
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["children_age_error"])
         bot.register_next_step_handler(
             message,
@@ -273,14 +263,12 @@ def get_hotels_count(data: dict, next_handlers: list[Callable], message: Message
         return
 
     try:
-        # проверяет формат и соответствие лимиту
         hotels_count = int(message.text)
         if hotels_count > MAX_HOTELS_COUNT:
             raise ValueError()
         data["hotels_count"] = hotels_count
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["hotels_count_error"])
         bot.register_next_step_handler(
             message,
@@ -308,7 +296,6 @@ def get_photos_count(data: dict, next_handlers: list[Callable], message: Message
         data["photos_count"] = photos_count
         set_next_handler(data, next_handlers, message.chat.id)
     except ValueError:
-        # при ошибке запрашивает снова
         bot.reply_to(message, MESSAGES["photos_count_error"])
         bot.register_next_step_handler(
             message,
@@ -335,7 +322,6 @@ def get_currency(data: dict, next_handlers: list[Callable], message: Message):
         data["currency"] = currency
         set_next_handler(data, next_handlers, message.chat.id)
     else:
-        # при неверном формате запрашивает снова
         bot.reply_to(message, MESSAGES["currency_error"])
         bot.register_next_step_handler(
             message,
@@ -363,7 +349,6 @@ def get_prices_range(data: dict, next_handlers: list[Callable], message: Message
         data["price_max"] = price_max
         set_next_handler(data, next_handlers, message.chat.id)
     except:
-        # при неверном формате запрашивает снова
         bot.reply_to(message, MESSAGES["prices_range_error"])
         bot.register_next_step_handler(
             message,
@@ -391,7 +376,6 @@ def get_distances_range(data: dict, next_handlers: list[Callable], message: Mess
         data["distance_max"] = distance_max
         set_next_handler(data, next_handlers, message.chat.id)
     except:
-        # при неверном формате запрашивает снова
         bot.reply_to(message, MESSAGES["distances_range_error"])
         bot.register_next_step_handler(
             message,

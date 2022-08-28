@@ -7,14 +7,19 @@ def make_request(url, querystring, headers=HEADERS) -> requests.Response:
     """Отправляем запрос к API, возвращаем успешный результат или None"""
     
     logging.info(f"Call: request_to_api.make_request({locals()})")
-    response = requests.get(
-        url=url,
-        params=querystring,
-        headers=headers,
-        timeout=20
-    )
-    if response.status_code != requests.codes.ok:
-        response = None
+    try:
+        response = requests.get(
+            url=url,
+            params=querystring,
+            headers=headers,
+            timeout=20
+        )
+        if response.status_code != requests.codes.ok:
+            response = None
 
-    logging.debug(f"Return: request_to_api.make_request ->\n{response}")
-    return response
+        logging.debug(f"Return: request_to_api.make_request ->\n{response}")
+        return response
+    except Exception as error:
+        logging.warning(f'API request error: {error}')
+        return None
+        
