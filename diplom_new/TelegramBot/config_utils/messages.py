@@ -18,8 +18,8 @@ MESSAGES = {
     "get_photos_count": "Введите количество фотографий отелей, которое необходимо вывести (не больше {0})".format(
         MAX_PHOTOS_COUNT) + CANCEL_TEXT,
     "photos_count_error": "Количество фотографий должно быть числом и меньше {0}".format(MAX_PHOTOS_COUNT),
-    "get_start_date": "На какие даты будем искать? \nВведите начальную дату (dd.mm.yyyy): " + CANCEL_TEXT,
-    "get_end_date": "Введите конечную дату (dd.mm.yyyy): " + CANCEL_TEXT,
+    "get_start_date": "На какие даты будем искать? \nВведите начальную дату (dd-mm-yyyy): " + CANCEL_TEXT,
+    "get_end_date": "Введите конечную дату (dd-mm-yyyy): " + CANCEL_TEXT,
     "get_adults_count": "Сколько взрослых будет проживать в номере?" + CANCEL_TEXT,
     "adults_count_error": "Количество взрослых должно быть не менее 1 и не более 3 человек",
     "get_children_age": "Возраст детей (до 13 лет) через запятую (например, 5,11). Если нет, введите '0'" + CANCEL_TEXT,

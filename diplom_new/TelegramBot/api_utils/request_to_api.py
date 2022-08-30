@@ -6,7 +6,8 @@ from config_utils.config import HEADERS
 def make_request(url, querystring, headers=HEADERS) -> requests.Response:
     """Отправляем запрос к API, возвращаем успешный результат или None"""
     
-    logging.info(f"Call: request_to_api.make_request({locals()})")
+    logging.info(f"Call: request_to_api.make_request()")
+    logging.debug(locals())
     try:
         response = requests.get(
             url=url,
@@ -19,7 +20,7 @@ def make_request(url, querystring, headers=HEADERS) -> requests.Response:
 
         logging.debug(f"Return: request_to_api.make_request ->\n{response}")
         return response
-    except Exception as error:
-        logging.warning(f'API request error: {error}')
+    except Exception as e:
+        logging.warning(f'API request error: {e}')
         return None
         

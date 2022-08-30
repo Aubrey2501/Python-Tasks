@@ -1,9 +1,8 @@
 """
-Этот модуль позволяет не строить сложные цепочки функций для получения простых данных
-и переиспользовать одни и те же обработчики для разных команд.
+Этот модуль для создания обработчиков для разных команд.
 
-Для последовательной получения, проверки и обработки данных достаточно передать
-в run_handlers объект для хранения данных по ключу, 
+Для последовательной получения, проверки и обработки данных
+в run_handlers передается объект для хранения данных по ключу,
 список обработчиков и сообщений, которые должны выводится перед ними,
 и функцию, которая должна будет выполниться после получения всех данных.
 Например:
@@ -52,13 +51,9 @@ def run_handlers(message: Message, data: dict, handlers: list[tuple[Callable, st
     """
     logging.info(f"Call: data_handlers.run_handlers({locals()})")
     # добавляем в список обработчиков последний обработчик
-    # в set_next_handler он будет вызываться как функция, 
-    # а не устанавливаться как next_step_handler
+    # в set_next_handler он будет вызываться как функция
     handlers.append(endpoint)
-    # переворачиваем список, чтобы получать элементы через pop, a не pop(0),
-    # потому что так красивее и теоретически происходит быстрее на 0.000001 секунду
-    handlers.reverse() 
-    # устанавливаем первый обработчик
+    handlers.reverse()
     set_next_handler(data, handlers, message.chat.id)
 
 
@@ -69,12 +64,9 @@ def set_next_handler(data: dict, handlers: list[Callable], chat_id: int):
     logging.debug(f"Call: data_handlers.set_next_handler({locals()})")
     logging.info(
         f"data_handlers.set_next_handler: {handler = }, is_handlers_empty = {not bool(handlers)}")
-
     if msg is not None:
         bot.send_message(chat_id, msg)
-
     bot.clear_step_handler_by_chat_id(chat_id)
-
     if not handlers:
         handler(data.copy(), chat_id)
     else:
@@ -99,7 +91,6 @@ def get_city(data: dict, next_handlers: list[Callable], message: Message):
     cities = get_cities(city)
     if cities:
         markup = InlineKeyboardMarkup(row_width=1)
-        # создает список кнопок, содержащих id города и текущий sort_order
         for city in cities:
             markup.add(
                 InlineKeyboardButton(
@@ -107,14 +98,12 @@ def get_city(data: dict, next_handlers: list[Callable], message: Message):
                     callback_data=f"choose_city$${city['city_id']}"
                 )
             )
-
         bot.send_message(
             message.chat.id,
             MESSAGES["success_cities"],
             reply_markup=markup
         )
     else:
-        # снова запрашивает город в случае ошибки
         bot.reply_to(message, MESSAGES["cities_error"])
         bot.register_next_step_handler(
             message,
@@ -129,12 +118,10 @@ def get_city(data: dict, next_handlers: list[Callable], message: Message):
         """Обработчик кнопки выбора города.
         Получает city_id и записывает в data["city_id"]. Устанавливает обработчик получения даты заезда
         """
-        # убираем текущее замыкание
         for ch in bot.callback_query_handlers:
             if ch["filters"]["func"] == cb_filter:
                 bot.callback_query_handlers.remove(ch)
                 break
-        # парсим callback_data
         city_id = int(callback.data.split("$$")[1])
         data["city_id"] = city_id
         set_next_handler(data, next_handlers.copy(), message.chat.id)
@@ -153,7 +140,7 @@ def get_start_date(data: dict, next_handlers: list[Callable], message: Message):
 
     try:
         start_date = datetime.datetime.strptime(
-            message.text, "%d.%m.%Y"
+            message.text, "%d-%m-%Y"
         ).date()
         data["start_date"] = start_date
         set_next_handler(data, next_handlers, message.chat.id)
@@ -178,7 +165,7 @@ def get_end_date(data: dict, next_handlers: list[Callable], message: Message):
         return
 
     try:
-        end_date = datetime.datetime.strptime(message.text, "%d.%m.%Y").date()
+        end_date = datetime.datetime.strptime(message.text, "%d-%m-%Y").date()
         if "start_date" in data and end_date <= data["start_date"]:
             raise ValueError
         data["end_date"] = end_date

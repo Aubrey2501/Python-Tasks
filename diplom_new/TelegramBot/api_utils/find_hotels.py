@@ -64,7 +64,7 @@ def request_hotels(
         "adults1": str(adults),
         "children1": children,
         "sortOrder": sort_order,
-        "locale": "ru_RU",
+        "locale": "en_US",
         "currency": currency
     }
     if price_min is not None:

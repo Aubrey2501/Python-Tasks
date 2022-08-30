@@ -21,17 +21,13 @@ def show_hotels(data: dict, chat_id: int):
     def choose_hotel(callback: CallbackQuery):
         """Обработчик выбора отеля. Выводит информацию об отеле и фотографии"""
 
-        # парсим callback_data
         data = callback.data.split(",")
         hotel_id = int(data[0].split("$$")[1])
         photos_count = int(data[1].split("$$")[1])
-        # отправляет сообщение об ожидании
-        bot.send_message(callback.message.chat.id, "Загружает данные...")
-        # ищет необходимый отель
+        bot.send_message(callback.message.chat.id, "Загружаем данные...")
         for hotel in hotels:
             if hotel.get("id") == hotel_id:
                 break
-        # строим описание отеля
         name = hotel["name"]
         rating = hotel["starRating"]
         address = hotel.get("address", {}).get("streetAddress", "-")
@@ -43,6 +39,10 @@ def show_hotels(data: dict, chat_id: int):
         rate = hotel.get("ratePlan", {}).get("price", {}).get("current", None)
         if rate is not None:
             caption += f"Средняя цена: {rate} /сут.\n"
+
+        neighbourhood = hotel.get("neighbourhood", None)
+        if neighbourhood is not None:
+            caption += f"Находится в районе: {neighbourhood}\n"
 
         total = hotel.get("ratePlan", {}).get(
             "price", {}).get("fullyBundledPricePerStay", None)
@@ -68,7 +68,6 @@ def show_hotels(data: dict, chat_id: int):
 
         bot.send_message(callback.message.chat.id, caption)
 
-    # получает список отелей
     hotels = get_hotels(
         data["city_id"],
         (data["start_date"], data["end_date"]),
@@ -99,14 +98,12 @@ def show_hotels(data: dict, chat_id: int):
                     hotels.remove(hotel)
 
     if hotels:
-        # запись в базу
         add_history_row(data["cmd"], data["cmd_time"], [
                         hotel["name"] for hotel in hotels])
 
         bot.send_message(chat_id, "Подобрали для вас следующие отели:")
         markup = InlineKeyboardMarkup(row_width=1)
         # создает кнопки, содержащие название отеля, рейтинг и цену за сутки
-        # в callback_data - id отеля
         for hotel in sorted(hotels, key=lambda elem: elem.get("starRating")):
             try:
                 button_text = f"{hotel['name']}, {int(hotel['starRating'])}\U00002605, " \
@@ -123,7 +120,6 @@ def show_hotels(data: dict, chat_id: int):
         bot.send_message(
             chat_id, MESSAGES["success_hotels"], reply_markup=markup)
     else:
-        # если отелей нет, выводим сообщение об ошибке
         bot.send_message(chat_id, MESSAGES["no_hotels"])
 
     for hnd in bot.callback_query_handlers:
